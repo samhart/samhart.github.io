@@ -257,6 +257,8 @@ function ChatEventHandler() {
 		customFields.push( { "key": "Name:", "value": getName(), "analyze": 0 } );
 		customFields.push( { "key": "Email:", "value": getEmail(), "analyze": 0 } );
 		customFields.push( { "key": "Question:", "value": getQuestion(), "analyze": 1 } );
+		customFields.push( { "key": "SalesForce Tier:", "value": "Top Tier", "analyze": 0 } );
+		customFields.push( { "key": "Company Size:", "value": "1 billion", "analyze": 0 } );
 		
 		var author = { "name": getName(), "email": getEmail() };
 		
