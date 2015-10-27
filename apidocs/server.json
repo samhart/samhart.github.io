@@ -1,0 +1,92 @@
+{
+  "apiVersion" : "1",
+  "swaggerVersion" : "1.2",
+  "basePath" : "/appsvcs/svc/rs/",
+  "resourcePath" : "/server",
+  "apis" : [ {
+    "path" : "/server/status",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getStatus",
+      "type" : "string",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  } ],
+  "models" : {
+    "RateLimit" : {
+      "id" : "RateLimit",
+      "properties" : {
+        "rateLimit" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Rate limit in this time window"
+        },
+        "message" : {
+          "type" : "string"
+        },
+        "resetEpochSeconds" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "UTC epoch time in seconds when it will be reset"
+        },
+        "httpStatusCode" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "errorCode" : {
+          "type" : "string",
+          "description" : "HTTP Status Code\n 429 Too Many Requests"
+        },
+        "rateLimitType" : {
+          "type" : "string",
+          "enum" : [ "TOO_MANY_REQUESTS", "TOO_MANY_CONCURRENT_REQUESTS" ]
+        },
+        "rateLimitUnit" : {
+          "type" : "string",
+          "description" : "Rate limitted time window time unit",
+          "enum" : [ "NANOSECONDS", "MICROSECONDS", "MILLISECONDS", "SECONDS", "MINUTES", "HOURS", "DAYS" ]
+        }
+      }
+    },
+    "Five9ExceptionDetail" : {
+      "id" : "Five9ExceptionDetail",
+      "properties" : {
+        "message" : {
+          "type" : "string",
+          "description" : "Error Message"
+        },
+        "timestamp" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "UTC time in milliseconds"
+        },
+        "source" : {
+          "type" : "string",
+          "description" : "Use this to identify the source of the problem"
+        },
+        "context" : {
+          "type" : "Map",
+          "description" : "context: Map of string values to report additional information about the problem.\n Say when a login failed, then userId can be sent as part of the context."
+        },
+        "errorCode" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "client specific errorCode for automated systems to track"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,5302 @@
+{
+  "apiVersion" : "1",
+  "swaggerVersion" : "1.2",
+  "basePath" : "/appsvcs/svc/rs/",
+  "resourcePath" : "/orgs",
+  "apis" : [ {
+    "path" : "/orgs/interactions/email",
+    "operations" : [ {
+      "method" : "POST",
+      "nickname" : "sendEmail",
+      "type" : "EmailRequestInfo",
+      "parameters" : [ {
+        "type" : "RequestEmailBody",
+        "paramType" : "body",
+        "name" : "emailBody",
+        "required" : true
+      } ],
+      "summary" : "Accepts an email from an outside source.",
+      "notes" : " No login session is required.",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/interactions/survey",
+    "operations" : [ {
+      "method" : "POST",
+      "nickname" : "sendSurvey",
+      "type" : "SurveyRequestInfo",
+      "parameters" : [ {
+        "type" : "SurveyBody",
+        "paramType" : "body",
+        "name" : "surveyBody",
+        "required" : true
+      } ],
+      "summary" : "Accepts the results of a survey.",
+      "notes" : " No login session is required.",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getOrganizationInfo",
+      "type" : "OrganizationInfo",
+      "parameters" : [ {
+        "type" : "string",
+        "description" : "organization id",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      } ],
+      "summary" : "Returns organization info",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/agent_states",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getAgentPresences",
+      "type" : "Map",
+      "parameters" : [ {
+        "type" : "string",
+        "description" : "organization Id",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      } ],
+      "summary" : "Gets the agent ready states for the specified organization",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/assistances",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getAssistances",
+      "type" : "array",
+      "items" : {
+        "$ref" : "Assistance"
+      },
+      "parameters" : [ {
+        "type" : "integer",
+        "format" : "int64",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      } ],
+      "summary" : "Gets chat assistances for the given {orgId}.",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/attributes",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getAttributes",
+      "type" : "array",
+      "items" : {
+        "$ref" : "Attribute"
+      },
+      "parameters" : [ {
+        "type" : "integer",
+        "format" : "int64",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      } ],
+      "summary" : "Gets available attributes for the given {orgId}.",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/authors/{authorId}/preview",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getAuthorPreview",
+      "type" : "array",
+      "items" : {
+        "$ref" : "SocialItem"
+      },
+      "parameters" : [ {
+        "type" : "integer",
+        "format" : "int64",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "authorId",
+        "required" : true
+      } ],
+      "summary" : "Gets the latest 5 items for a given contact.",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/call_variables",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getCallVariables",
+      "type" : "array",
+      "items" : {
+        "$ref" : "CallVariableInfo"
+      },
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      } ],
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/callbacks",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getCallbacks",
+      "type" : "array",
+      "items" : {
+        "$ref" : "Callback"
+      },
+      "parameters" : [ {
+        "type" : "integer",
+        "format" : "int64",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      } ],
+      "summary" : "Gets available callbacks for the given orgId.",
+      "notes" : "\n        This does not apply to calls nor voicemails.",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/campaigns",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getCampaigns",
+      "type" : "array",
+      "items" : {
+        "$ref" : "CampaignInfo"
+      },
+      "parameters" : [ {
+        "type" : "string",
+        "description" : "organization id",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      } ],
+      "summary" : "Gets the campaigns for an organization",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/campaigns/{campaignId}/dispositions",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getCampaignDispositions",
+      "type" : "array",
+      "items" : {
+        "$ref" : "DispositionInfo"
+      },
+      "parameters" : [ {
+        "type" : "string",
+        "description" : "id of a domain or tenant",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "description" : "id of a campaign",
+        "paramType" : "path",
+        "name" : "campaignId",
+        "required" : true
+      } ],
+      "summary" : "Returns campaign disposition info.",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/campaigns/{campaignId}/script",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getCampaignScriptResponse",
+      "type" : "Response",
+      "parameters" : [ {
+        "type" : "string",
+        "description" : "organization id",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "description" : "campaign id. Only those returned by {@link IAgentService#getCampaignsConfig} are allowed for\n          the agent.",
+        "paramType" : "path",
+        "name" : "campaignId",
+        "required" : true
+      } ],
+      "summary" : "Returns the script for the given campaign as a compressed flow of bytes.",
+      "notes" : "\n        After decompressing, the flow should be checked for BOM (Byte Order Mark).\n        If first 3 bytes are 0xEF, 0xBB, 0xBF, then the script is in UTF-8 format.\n        Otherwise, it is Windows-1252.",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/octet-stream" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/campaigns/{campaignId}/worksheet_questions",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getWorksheetQuestions",
+      "type" : "array",
+      "items" : {
+        "$ref" : "QuestionInfo"
+      },
+      "parameters" : [ {
+        "type" : "string",
+        "description" : "organization id",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "description" : "campaign id",
+        "paramType" : "path",
+        "name" : "campaignId",
+        "required" : true
+      } ],
+      "summary" : "Gets worksheet questions for the given campaign",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/chatoffers/savehisory/{tenantname}",
+    "operations" : [ {
+      "method" : "POST",
+      "nickname" : "saveChatWebHistory",
+      "type" : "void",
+      "parameters" : [ {
+        "type" : "string",
+        "description" : "organization ID",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "description" : "Tenant Name",
+        "paramType" : "path",
+        "name" : "tenantname",
+        "required" : true
+      }, {
+        "type" : "ChatWebHistoryBody",
+        "paramType" : "body",
+        "name" : "chatWebHistoryBody",
+        "required" : true
+      } ],
+      "summary" : "Saves the user browsing history before the chat offer popup.<br/>",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/chatoffers/{tenantname}",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getChatOffers",
+      "type" : "array",
+      "items" : {
+        "$ref" : "ChatOffer"
+      },
+      "parameters" : [ {
+        "type" : "string",
+        "description" : "organization ID",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "description" : "Tenant Name",
+        "paramType" : "path",
+        "name" : "tenantname",
+        "required" : true
+      } ],
+      "summary" : "Returns list of chat offer configurations for a given organization.<br/>",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/clusters",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getClusters",
+      "type" : "array",
+      "items" : {
+        "$ref" : "Cluster"
+      },
+      "parameters" : [ {
+        "type" : "integer",
+        "format" : "int64",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      } ],
+      "summary" : "Gets available clusters for the given orgId.",
+      "notes" : "\n        This does not apply to calls nor voicemails.",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/contact_fields",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getContactFields",
+      "type" : "array",
+      "items" : {
+        "$ref" : "ContactFieldInfo"
+      },
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      } ],
+      "summary" : "Retrieves list of available contact fields",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/contacts",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getContacts",
+      "type" : "ContactLookupResultInfo",
+      "parameters" : [ {
+        "type" : "string",
+        "description" : "the same as domainId for the agent",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "description" : "object used to navigate through contacts. Initial value can be omitted. For the subsequent\n               queries, use cursor from previously returned {@link ContactLookupResultInfo}.",
+        "paramType" : "query",
+        "name" : "cursor"
+      }, {
+        "type" : "integer",
+        "format" : "int32",
+        "description" : "maximum number of contacts to get. Not more than 10000. Default is 1000.",
+        "paramType" : "query",
+        "name" : "limit"
+      }, {
+        "type" : "string",
+        "paramType" : "query",
+        "name" : "_s"
+      } ],
+      "summary" : "Gets contacts with specified criteria.",
+      "notes" : "\n        <p>\n        Search criteria must be specified as a URL query parameter named '_s'\n        with value containing pairs of field_name==field_value. The pairs must be separated by semicolon.\n        The name of any field is available to you as {@link ContactFieldInfo#name} (see {@link #getContactFields}).<br>\n        Example:<br>\n        http://servername.com/appsvcs/rs/svc/org/54/contacts?_s=first_name==Alex;city==London\n        </p>\n        <p>\n        It is impossible to define a search criterion for number1, number2 or number3 fields.\n        Instead, use special field name 'number'. Such a criterion is actually expanded to\n        satisfy any of the contact numbers.<br>\n        Example:<br>\n        http://servername.com/appsvcs/rs/svc/org/54/contacts?_s=number==18005538159\n        </p>",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    }, {
+      "method" : "POST",
+      "nickname" : "createContact",
+      "type" : "ContactInfo",
+      "parameters" : [ {
+        "type" : "string",
+        "description" : "the same as domainId for the agent",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "ContactInfo",
+        "description" : "contact information",
+        "paramType" : "body",
+        "name" : "info",
+        "required" : true
+      } ],
+      "summary" : "Creates a new contact.",
+      "notes" : "\n        It should be called when receiving an inbound call from an unknown\n        phone number.\n        There is an exception from this rule. In case the phone number is not\n        identified and the customer has not filled other contact's fields,\n        Worksheet, Comments, etc., such a contact (with an invalid number)\n        should not be saved.",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/contacts/{contactId}",
+    "operations" : [ {
+      "method" : "DELETE",
+      "nickname" : "removeContact",
+      "type" : "void",
+      "parameters" : [ {
+        "type" : "string",
+        "description" : "the same as domainId for the agent",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "description" : "contact id",
+        "paramType" : "path",
+        "name" : "contactId",
+        "required" : true
+      } ],
+      "summary" : "Deletes contact with specified id.",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    }, {
+      "method" : "GET",
+      "nickname" : "getContact",
+      "type" : "ContactInfo",
+      "parameters" : [ {
+        "type" : "string",
+        "description" : "the same as domainId for the agent",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "description" : "contact id",
+        "paramType" : "path",
+        "name" : "contactId",
+        "required" : true
+      } ],
+      "summary" : "Gets contact with specified id.",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    }, {
+      "method" : "PUT",
+      "nickname" : "updateContact",
+      "type" : "ContactInfo",
+      "parameters" : [ {
+        "type" : "string",
+        "description" : "the same as domainId for the agent",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "description" : "contact id",
+        "paramType" : "path",
+        "name" : "contactId",
+        "required" : true
+      }, {
+        "type" : "ContactInfo",
+        "description" : "contact information to update. {@link ContactInfo#fields} should contain all modified fields.\n        The client is allowed not to send unmodified fields. Values of the missed fields will remain as they are.\n        To set the value of a field to null, the client should explicitly set null to it.",
+        "paramType" : "body",
+        "name" : "info",
+        "required" : true
+      } ],
+      "summary" : "Updates a contact.",
+      "notes" : "\n        If the agent has modified the contact, it can be saved",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/contacts/{contactId}/history",
+    "operations" : [ {
+      "method" : "POST",
+      "nickname" : "createContactHistoryView",
+      "type" : "InteractionHistoryViewInfo",
+      "parameters" : [ {
+        "type" : "string",
+        "description" : "organization id",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "description" : "contact id",
+        "paramType" : "path",
+        "name" : "contactId",
+        "required" : true
+      }, {
+        "type" : "InteractionHistoryViewOptions",
+        "description" : "view options",
+        "paramType" : "body",
+        "name" : "options",
+        "required" : true
+      } ],
+      "summary" : "Creates a contact history view resource.",
+      "notes" : " This resource is used to iterate over contact history.\n        View represents a subset of records selected by specified options.\n        This methods returns initial view state with first selected records.\n        If returned {@link InteractionHistoryViewInfo#hasMore} is true\n        use {@link #iterateContactHistoryView(Long, String, String)} to get next records.",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/contacts/{contactId}/history/{viewId}/next",
+    "operations" : [ {
+      "method" : "PUT",
+      "nickname" : "iterateContactHistoryView",
+      "type" : "InteractionHistoryViewInfo",
+      "parameters" : [ {
+        "type" : "integer",
+        "format" : "int64",
+        "description" : "organization id",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "description" : "contact id",
+        "paramType" : "path",
+        "name" : "contactId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "description" : "view id",
+        "paramType" : "path",
+        "name" : "viewId",
+        "required" : true
+      } ],
+      "summary" : "Fetches next n records from history view.",
+      "notes" : " 'n' is <= {@lnk InteractionHistoryViewOptions#limit}.",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/contacts/{contactId}/note",
+    "operations" : [ {
+      "method" : "PUT",
+      "nickname" : "createContactNote",
+      "type" : "Note",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "contactId",
+        "required" : true
+      }, {
+        "type" : "Note",
+        "paramType" : "body",
+        "name" : "info",
+        "required" : true
+      } ],
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/contacts/{contactId}/note/{noteId}",
+    "operations" : [ {
+      "method" : "DELETE",
+      "nickname" : "deleteContactNote",
+      "type" : "Note",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "contactId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "noteId",
+        "required" : true
+      } ],
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/contacts/{contactId}/sessions",
+    "operations" : [ {
+      "method" : "POST",
+      "nickname" : "createContactSessionComment",
+      "type" : "ContactSessionInfo",
+      "parameters" : [ {
+        "type" : "string",
+        "description" : "the same as domainId for the agent",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "description" : "contact id",
+        "paramType" : "path",
+        "name" : "contactId",
+        "required" : true
+      }, {
+        "type" : "ContactSessionInfo",
+        "description" : "contact session. Only comment and campaignId fields are required. The other fields are ignored.",
+        "paramType" : "body",
+        "name" : "contactSession",
+        "required" : true
+      } ],
+      "summary" : "Creates a new contact session",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/contacts/{contactId}/sessions/{sessionId}",
+    "operations" : [ {
+      "method" : "PUT",
+      "nickname" : "updateContactSessionComment",
+      "type" : "void",
+      "parameters" : [ {
+        "type" : "string",
+        "description" : "the same as domainId for the agent",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "description" : "contact id",
+        "paramType" : "path",
+        "name" : "contactId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "description" : "session id",
+        "paramType" : "path",
+        "name" : "sessionId",
+        "required" : true
+      }, {
+        "type" : "ContactSessionInfo",
+        "description" : "contact session. Only the comment field is required. The other fields are ignored.",
+        "paramType" : "body",
+        "name" : "contactSession",
+        "required" : true
+      } ],
+      "summary" : "Updates a comment for a contact session",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/dispositions",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getDispositions",
+      "type" : "array",
+      "items" : {
+        "$ref" : "DispositionInfo"
+      },
+      "parameters" : [ {
+        "type" : "integer",
+        "format" : "int64",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      } ],
+      "summary" : "Gets the dispositions for the given {orgId}.",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/ewt/{type}/{id}/{mediaType}",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "ewt",
+      "type" : "EWTInfo",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "type",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "id",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "mediaType",
+        "required" : true
+      } ],
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/interactions",
+    "operations" : [ {
+      "method" : "POST",
+      "nickname" : "getSocialItems",
+      "type" : "void",
+      "parameters" : [ {
+        "type" : "integer",
+        "format" : "int64",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      } ],
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/interactions/email/attachments",
+    "operations" : [ {
+      "method" : "PUT",
+      "nickname" : "uploadEmailAttachment",
+      "type" : "EmailAttachmentInfo",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "Attachment",
+        "paramType" : "body",
+        "name" : "file",
+        "required" : true
+      } ],
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "multipart/form-data" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/interactions/email/outbound",
+    "operations" : [ {
+      "method" : "PUT",
+      "nickname" : "sendEmail",
+      "type" : "void",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "SendEmailBody",
+        "paramType" : "body",
+        "name" : "sendEmailBody",
+        "required" : true
+      } ],
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/interactions/session",
+    "operations" : [ {
+      "method" : "PUT",
+      "nickname" : "setSessionText",
+      "type" : "SessionTextInfo",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "SessionTextBody",
+        "paramType" : "body",
+        "name" : "socialTextBody",
+        "required" : true
+      } ],
+      "summary" : "Stores variables keyed by an {id} created by the server.",
+      "notes" : "\n        This method is not secured.",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/interactions/session/{id}",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getSocialText",
+      "type" : "SessionTextInfo",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "integer",
+        "format" : "int64",
+        "paramType" : "path",
+        "name" : "id",
+        "required" : true
+      } ],
+      "summary" : "Retrieves variables keyed by {id}.",
+      "notes" : "\n         This method is not secured.",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    }, {
+      "method" : "PUT",
+      "nickname" : "setSocialText",
+      "type" : "void",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "integer",
+        "format" : "int64",
+        "paramType" : "path",
+        "name" : "id",
+        "required" : true
+      }, {
+        "type" : "SessionTextBody",
+        "paramType" : "body",
+        "name" : "sessionTextBody",
+        "required" : true
+      } ],
+      "summary" : "Stores variables keyed by an {id} provided by the client.",
+      "notes" : "\n        This method is not secured.",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/interactions/social/outbound",
+    "operations" : [ {
+      "method" : "PUT",
+      "nickname" : "sendSocial",
+      "type" : "void",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "SendSocialBody",
+        "paramType" : "body",
+        "name" : "sendSocialBody",
+        "required" : true
+      } ],
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/interactions/{interactionId}/accept",
+    "operations" : [ {
+      "method" : "PUT",
+      "nickname" : "acceptInteraction",
+      "type" : "void",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "interactionId",
+        "required" : true
+      }, {
+        "type" : "AcceptBody",
+        "paramType" : "body",
+        "name" : "acceptBody",
+        "required" : true
+      } ],
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/interactions/{interactionId}/attributes",
+    "operations" : [ {
+      "method" : "PUT",
+      "nickname" : "saveAttribute",
+      "type" : "void",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "interactionId",
+        "required" : true
+      }, {
+        "type" : "AssignAttributeBody",
+        "paramType" : "body",
+        "name" : "attributeBody",
+        "required" : true
+      } ],
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/interactions/{interactionId}/chat/acknowledge",
+    "operations" : [ {
+      "method" : "POST",
+      "nickname" : "chatAcknowledge",
+      "type" : "void",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "interactionId",
+        "required" : true
+      }, {
+        "type" : "AgentChatBody",
+        "paramType" : "body",
+        "name" : "agentChatBody",
+        "required" : true
+      } ],
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/interactions/{interactionId}/chat/add_users",
+    "operations" : [ {
+      "method" : "POST",
+      "nickname" : "chatAddUsers",
+      "type" : "void",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "interactionId",
+        "required" : true
+      }, {
+        "type" : "AddChatUsersBody",
+        "paramType" : "body",
+        "name" : "addChatUsersBody",
+        "required" : true
+      } ],
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/interactions/{interactionId}/chat/change_owner",
+    "operations" : [ {
+      "method" : "POST",
+      "nickname" : "chatChangeUser",
+      "type" : "void",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "interactionId",
+        "required" : true
+      }, {
+        "type" : "ChatOwnerBody",
+        "paramType" : "body",
+        "name" : "chatOwnerBody",
+        "required" : true
+      } ],
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/interactions/{interactionId}/chat/message",
+    "operations" : [ {
+      "method" : "POST",
+      "nickname" : "chatMessage",
+      "type" : "void",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "interactionId",
+        "required" : true
+      }, {
+        "type" : "AgentChatBody",
+        "paramType" : "body",
+        "name" : "agentChatBod",
+        "required" : true
+      } ],
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/interactions/{interactionId}/chat/remove_users",
+    "operations" : [ {
+      "method" : "DELETE",
+      "nickname" : "chatRemoveUsers",
+      "type" : "void",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "interactionId",
+        "required" : true
+      }, {
+        "type" : "RemoveChatUsersBody",
+        "paramType" : "body",
+        "name" : "removeChatUsersBody",
+        "required" : true
+      } ],
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/interactions/{interactionId}/chat/terminate",
+    "operations" : [ {
+      "method" : "POST",
+      "nickname" : "chatTerminate",
+      "type" : "void",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "interactionId",
+        "required" : true
+      }, {
+        "type" : "AgentChatBody",
+        "paramType" : "body",
+        "name" : "agentChatBody",
+        "required" : true
+      } ],
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/interactions/{interactionId}/chat/transfer",
+    "operations" : [ {
+      "method" : "POST",
+      "nickname" : "chatTransfer",
+      "type" : "void",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "interactionId",
+        "required" : true
+      }, {
+        "type" : "TransferToAgentBody",
+        "paramType" : "body",
+        "name" : "transferToAgentBody",
+        "required" : true
+      } ],
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/interactions/{interactionId}/chat/typing",
+    "operations" : [ {
+      "method" : "POST",
+      "nickname" : "chatTyping",
+      "type" : "void",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "interactionId",
+        "required" : true
+      }, {
+        "type" : "AgentChatBody",
+        "paramType" : "body",
+        "name" : "agentChatBody",
+        "required" : true
+      } ],
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/interactions/{interactionId}/client_chat",
+    "operations" : [ {
+      "method" : "POST",
+      "nickname" : "clientChat",
+      "type" : "ProfileSurvey",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "interactionId",
+        "required" : true
+      }, {
+        "type" : "ChatRequestBody",
+        "paramType" : "body",
+        "name" : "chatRequestBody",
+        "required" : true
+      } ],
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/interactions/{interactionId}/client_chat/acknowledge",
+    "operations" : [ {
+      "method" : "POST",
+      "nickname" : "clientChatAcknowledge",
+      "type" : "void",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "interactionId",
+        "required" : true
+      }, {
+        "type" : "AgentChatBody",
+        "paramType" : "body",
+        "name" : "agentChatBody",
+        "required" : true
+      } ],
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/interactions/{interactionId}/client_chat/message",
+    "operations" : [ {
+      "method" : "POST",
+      "nickname" : "clientChatMessage",
+      "type" : "void",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "interactionId",
+        "required" : true
+      }, {
+        "type" : "AgentChatBody",
+        "paramType" : "body",
+        "name" : "agentChatBod",
+        "required" : true
+      } ],
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/interactions/{interactionId}/client_chat/terminate",
+    "operations" : [ {
+      "method" : "POST",
+      "nickname" : "clientChatTerminate",
+      "type" : "void",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "interactionId",
+        "required" : true
+      }, {
+        "type" : "AgentChatBody",
+        "paramType" : "body",
+        "name" : "agentChatBody",
+        "required" : true
+      } ],
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/interactions/{interactionId}/client_chat/typing",
+    "operations" : [ {
+      "method" : "POST",
+      "nickname" : "clientChatTyping",
+      "type" : "void",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "interactionId",
+        "required" : true
+      }, {
+        "type" : "AgentChatBody",
+        "paramType" : "body",
+        "name" : "agentChatBody",
+        "required" : true
+      } ],
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/interactions/{interactionId}/cluster",
+    "operations" : [ {
+      "method" : "PUT",
+      "nickname" : "setCluster",
+      "type" : "void",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "interactionId",
+        "required" : true
+      }, {
+        "type" : "ClusterBody",
+        "paramType" : "body",
+        "name" : "clusterBody",
+        "required" : true
+      } ],
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/interactions/{interactionId}/disposition",
+    "operations" : [ {
+      "method" : "PUT",
+      "nickname" : "setDisposition",
+      "type" : "void",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "interactionId",
+        "required" : true
+      }, {
+        "type" : "DispositionBody",
+        "paramType" : "body",
+        "name" : "dispositionBody",
+        "required" : true
+      } ],
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/interactions/{interactionId}/email/reply",
+    "operations" : [ {
+      "method" : "PUT",
+      "nickname" : "replyToEmail",
+      "type" : "void",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "interactionId",
+        "required" : true
+      }, {
+        "type" : "ReplyToEmailBody",
+        "paramType" : "body",
+        "name" : "replyToBody",
+        "required" : true
+      } ],
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/interactions/{interactionId}/lock",
+    "operations" : [ {
+      "method" : "PUT",
+      "nickname" : "lockSocialItem",
+      "type" : "void",
+      "parameters" : [ {
+        "type" : "integer",
+        "format" : "int64",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "interactionId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "body",
+        "name" : "mediaType",
+        "required" : true
+      }, {
+        "type" : "integer",
+        "format" : "int64",
+        "paramType" : "body",
+        "name" : "userId",
+        "required" : true
+      }, {
+        "type" : "integer",
+        "format" : "int64",
+        "paramType" : "body",
+        "name" : "profileId",
+        "required" : true
+      } ],
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/interactions/{interactionId}/note",
+    "operations" : [ {
+      "method" : "PUT",
+      "nickname" : "saveNote",
+      "type" : "void",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "interactionId",
+        "required" : true
+      }, {
+        "type" : "NoteBody",
+        "paramType" : "body",
+        "name" : "noteBody",
+        "required" : true
+      } ],
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/interactions/{interactionId}/reject",
+    "operations" : [ {
+      "method" : "PUT",
+      "nickname" : "rejectInteraction",
+      "type" : "void",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "interactionId",
+        "required" : true
+      } ],
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/interactions/{interactionId}/sentiment",
+    "operations" : [ {
+      "method" : "PUT",
+      "nickname" : "setSentiment",
+      "type" : "void",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "interactionId",
+        "required" : true
+      }, {
+        "type" : "SentimentBody",
+        "paramType" : "body",
+        "name" : "sentimentBody",
+        "required" : true
+      } ],
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/interactions/{interactionId}/social/history",
+    "operations" : [ {
+      "method" : "PUT",
+      "nickname" : "replyToHistory",
+      "type" : "void",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "interactionId",
+        "required" : true
+      }, {
+        "type" : "ReplyToHistory",
+        "paramType" : "body",
+        "name" : "replyToBody",
+        "required" : true
+      } ],
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/interactions/{interactionId}/social/reply",
+    "operations" : [ {
+      "method" : "PUT",
+      "nickname" : "replyToSocial",
+      "type" : "void",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "interactionId",
+        "required" : true
+      }, {
+        "type" : "ReplyToSocialBody",
+        "paramType" : "body",
+        "name" : "replyToBody",
+        "required" : true
+      } ],
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/interactions/{interactionId}/spam",
+    "operations" : [ {
+      "method" : "PUT",
+      "nickname" : "setSpam",
+      "type" : "void",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "interactionId",
+        "required" : true
+      }, {
+        "type" : "SpamBody",
+        "paramType" : "body",
+        "name" : "spamBody",
+        "required" : true
+      } ],
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/interactions/{interactionId}/topic",
+    "operations" : [ {
+      "method" : "PUT",
+      "nickname" : "assignTopic",
+      "type" : "void",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "interactionId",
+        "required" : true
+      }, {
+        "type" : "AssignTopicBody",
+        "paramType" : "body",
+        "name" : "assignTopicBody",
+        "required" : true
+      } ],
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    }, {
+      "method" : "POST",
+      "nickname" : "createAndAssignTopic",
+      "type" : "TopicIdBody",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "interactionId",
+        "required" : true
+      }, {
+        "type" : "CreateTopicBody",
+        "paramType" : "body",
+        "name" : "createTopicBody",
+        "required" : true
+      } ],
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/interactions/{interactionId}/topic/{topicId}",
+    "operations" : [ {
+      "method" : "POST",
+      "nickname" : "editAssignedTopic",
+      "type" : "void",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "interactionId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "topicId",
+        "required" : true
+      }, {
+        "type" : "CreateTopicBody",
+        "paramType" : "body",
+        "name" : "createTopicBody",
+        "required" : true
+      } ],
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/interactions/{interactionId}/transfer_to_agent",
+    "operations" : [ {
+      "method" : "PUT",
+      "nickname" : "transferToAgent",
+      "type" : "void",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "interactionId",
+        "required" : true
+      }, {
+        "type" : "TransferToAgentBody",
+        "paramType" : "body",
+        "name" : "transferBody",
+        "required" : true
+      } ],
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/interactions/{interactionId}/transfer_to_group",
+    "operations" : [ {
+      "method" : "PUT",
+      "nickname" : "transferToGroup",
+      "type" : "void",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "interactionId",
+        "required" : true
+      }, {
+        "type" : "TransferToGroupBody",
+        "paramType" : "body",
+        "name" : "transferBody",
+        "required" : true
+      } ],
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/locales",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getLocales",
+      "type" : "array",
+      "items" : {
+        "$ref" : "LocaleInfo"
+      },
+      "parameters" : [ {
+        "type" : "string",
+        "description" : "organization ID",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      } ],
+      "summary" : "Returns list of supported organization locales.<br/>",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/logout_reason_codes",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getLogoutReasonCodes",
+      "type" : "array",
+      "items" : {
+        "$ref" : "ReasonCodeInfo"
+      },
+      "parameters" : [ {
+        "type" : "string",
+        "description" : "organization Id",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      } ],
+      "summary" : "Returns Logout Reason Codes for the organization.",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/medias",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getMediaTypes",
+      "type" : "array",
+      "items" : {
+        "$ref" : "MediaType"
+      },
+      "parameters" : [ {
+        "type" : "integer",
+        "format" : "int64",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      } ],
+      "summary" : "Gets chat assistances for the given {orgId}.",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/messages",
+    "operations" : [ {
+      "method" : "POST",
+      "nickname" : "sendMessage",
+      "type" : "void",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "MessageBody",
+        "paramType" : "body",
+        "name" : "body",
+        "required" : true
+      } ],
+      "summary" : "Sends an unstructured message to the backend.",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/no_campaign_dispositions",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getNoCampaignDispositions",
+      "type" : "array",
+      "items" : {
+        "$ref" : "DispositionInfo"
+      },
+      "parameters" : [ {
+        "type" : "string",
+        "description" : "id of a domain or tenant",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      } ],
+      "summary" : "Returns disposition info for calls without a campaign",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/not_ready_reason_codes",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getNotReadyReasonCodes",
+      "type" : "array",
+      "items" : {
+        "$ref" : "ReasonCodeInfo"
+      },
+      "parameters" : [ {
+        "type" : "string",
+        "description" : "organization Id",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      } ],
+      "summary" : "Returns Not Ready Reason Codes for the organization.",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/password_policies",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getPasswordPolicies",
+      "type" : "Map",
+      "parameters" : [ {
+        "type" : "string",
+        "description" : "domain id",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      } ],
+      "summary" : "Returns actual password policies for domain.",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/phone_number/format",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getPhoneNumberFormat",
+      "type" : "PhoneNumberFormatInfo",
+      "parameters" : [ {
+        "type" : "string",
+        "description" : "organization id",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      } ],
+      "summary" : "Returns phone number format and home locale for serving data center.",
+      "notes" : " All phone number related API will provide\n        numbers in specified format and will accept numbers only if they conform to this format.",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/phone_number/locales",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getPhoneNumberLocales",
+      "type" : "array",
+      "items" : {
+        "$ref" : "PhoneNumberLocaleInfo"
+      },
+      "parameters" : [ {
+        "type" : "string",
+        "description" : "organization id",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      } ],
+      "summary" : "Returns all phone number locales configured for this organization.",
+      "notes" : " Can be used to present a list of country codes\n        and names (or to provide other hints) when prompting a user to enter phone number.",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/phone_number/localization_options",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getPhoneNumberLocalizationOptions",
+      "type" : "PhoneNumberLocalizationOptionsInfo",
+      "parameters" : [ {
+        "type" : "string",
+        "description" : "organization id",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      } ],
+      "summary" : "Returns localization options specified for the organization.",
+      "notes" : " This options should be taken into account when\n        displaying phone numbers to an end user and when exporting data to outside world.",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/skills",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getSkills",
+      "type" : "array",
+      "items" : {
+        "$ref" : "SkillInfo"
+      },
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      } ],
+      "summary" : "Gets skills for an organization",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/speed_dials",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getSpeedDials",
+      "type" : "array",
+      "items" : {
+        "$ref" : "SpeedDialInfo"
+      },
+      "parameters" : [ {
+        "type" : "string",
+        "description" : "organization Id",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      } ],
+      "summary" : "Gets the speed dials for the given orgId",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/speed_dials/{speedDialId}",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getSpeedDial",
+      "type" : "SpeedDialInfo",
+      "parameters" : [ {
+        "type" : "string",
+        "description" : "organization Id",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "description" : "speed dial Id",
+        "paramType" : "path",
+        "name" : "speedDialId",
+        "required" : true
+      } ],
+      "summary" : "Gets the speed dial with specified Id for the given orgId",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/time_zones",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getTimeZones",
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      },
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      } ],
+      "summary" : "Retrieves a list of available time zones and their data.",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/topic",
+    "operations" : [ {
+      "method" : "POST",
+      "nickname" : "createTopic",
+      "type" : "TopicIdBody",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "CreateTopicBody",
+        "paramType" : "body",
+        "name" : "createTopicBody",
+        "required" : true
+      } ],
+      "summary" : "Creates a new topic that connects social posts or email threads.",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/topic/{topicId}",
+    "operations" : [ {
+      "method" : "PUT",
+      "nickname" : "updateTopic",
+      "type" : "void",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "topicId",
+        "required" : true
+      }, {
+        "type" : "EditTopicBody",
+        "paramType" : "body",
+        "name" : "editTopicBody",
+        "required" : true
+      } ],
+      "summary" : "Edits an existing topic.",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/topics",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getTopics",
+      "type" : "array",
+      "items" : {
+        "$ref" : "Topic"
+      },
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "query",
+        "name" : "regEx"
+      } ],
+      "summary" : "Returns a list of topics that connect social posts or email threads.",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/users",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getUsers",
+      "type" : "array",
+      "items" : {
+        "$ref" : "UserInfo"
+      },
+      "parameters" : [ {
+        "type" : "string",
+        "description" : "organization id",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      } ],
+      "summary" : "Returns a collection of users for an organization.",
+      "notes" : "\n        Users with flag {@link UserInfo#isLoggedIn} are ready to receive internal chat messages.",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/orgs/{orgId}/users/logged_in_agents",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getLoggedInAgents",
+      "type" : "AgentsAreLoggedInInfo",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "orgId",
+        "required" : true
+      } ],
+      "summary" : "Returns true if agents are currently available for an organization.",
+      "notes" : "\n        This method does not apply to agents available for call or voicemail interactions.",
+      "responseMessages" : [ {
+        "code" : 200,
+        "message" : "Success"
+      }, {
+        "code" : 429,
+        "message" : "Too many requests were sent to the server. Resend your request later",
+        "responseModel" : "RateLimit"
+      }, {
+        "code" : 435,
+        "message" : "An error occurred during processing. See the details of the error.",
+        "responseModel" : "Five9ExceptionDetail"
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  } ],
+  "models" : {
+    "PredefinedValueInfo" : {
+      "id" : "PredefinedValueInfo",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "Unique identificator of predefined value."
+        },
+        "enabled" : {
+          "type" : "boolean",
+          "description" : "If true then predefined value is available for selection by user in UI.\n If false then predefined value shouldn't be available (can be hidden) for selection by user in UI."
+        },
+        "order" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "UI control should display predefined values in ordered way accordingly to value of this field.\n Predefined value with less order should be presented before others."
+        },
+        "value" : {
+          "type" : "string",
+          "description" : "UI label of predefined value."
+        }
+      }
+    },
+    "ReplyToEmailBody" : {
+      "id" : "ReplyToEmailBody",
+      "properties" : {
+        "toAddresses" : {
+          "type" : "string"
+        },
+        "title" : {
+          "type" : "string"
+        },
+        "filenames" : {
+          "type" : "String[]"
+        },
+        "profileId" : {
+          "type" : "string"
+        },
+        "authorName" : {
+          "type" : "string"
+        },
+        "bccAddresses" : {
+          "type" : "string"
+        },
+        "replyMsg" : {
+          "type" : "string"
+        },
+        "authorId" : {
+          "type" : "string"
+        },
+        "ccAddresses" : {
+          "type" : "string"
+        }
+      }
+    },
+    "MediaType" : {
+      "id" : "MediaType",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "icon" : {
+          "type" : "string"
+        },
+        "replyDisplay" : {
+          "type" : "string"
+        },
+        "relationDisplay" : {
+          "type" : "string"
+        },
+        "messageDisplay" : {
+          "type" : "string"
+        },
+        "outbound" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "relationButton" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "maxSize" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "url" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Attachment" : {
+      "id" : "Attachment",
+      "properties" : {
+        "headers" : {
+          "type" : "MultivaluedMap"
+        },
+        "providers" : {
+          "type" : "Providers"
+        },
+        "dataHandler" : {
+          "type" : "DataHandler"
+        },
+        "contentType" : {
+          "type" : "MediaType"
+        },
+        "object" : {
+          "type" : "Object"
+        },
+        "contentDisposition" : {
+          "type" : "ContentDisposition"
+        },
+        "contentId" : {
+          "type" : "string"
+        },
+        "handler" : {
+          "type" : "DataHandler"
+        }
+      }
+    },
+    "Assistance" : {
+      "id" : "Assistance",
+      "properties" : {
+        "response" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "profileId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "value" : {
+          "type" : "string"
+        }
+      }
+    },
+    "SocialItemReply" : {
+      "id" : "SocialItemReply",
+      "properties" : {
+        "tenantId" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "parentId" : {
+          "type" : "string"
+        },
+        "lname" : {
+          "type" : "string"
+        },
+        "title" : {
+          "type" : "string"
+        },
+        "replyText" : {
+          "type" : "string"
+        },
+        "profileId" : {
+          "type" : "string"
+        },
+        "userId" : {
+          "type" : "string"
+        },
+        "replyTime" : {
+          "type" : "string"
+        },
+        "fname" : {
+          "type" : "string"
+        }
+      }
+    },
+    "InteractionHistoryViewOptions" : {
+      "id" : "InteractionHistoryViewOptions",
+      "properties" : {
+        "limit" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Maximum number of records return for each lookup iteration."
+        },
+        "mediaTypes" : {
+          "type" : "array",
+          "description" : "List of media types by which records should be selected.",
+          "items" : {
+            "type" : "integer"
+          },
+          "uniqueItems" : true
+        },
+        "period" : {
+          "type" : "string",
+          "description" : "Period of time for which records should be selected.",
+          "enum" : [ "CURRENT_SESSION", "TODAY", "YESTERDAY", "LAST_7_DAYS", "LAST_WEEK", "LAST_14_DAYS", "LAST_30_DAYS", "LAST_60_DAYS" ]
+        },
+        "campaignIds" : {
+          "type" : "array",
+          "description" : "List of campaign ids by which records should be selected.",
+          "items" : {
+            "type" : "string"
+          },
+          "uniqueItems" : true
+        },
+        "includeDialAttempts" : {
+          "type" : "boolean",
+          "description" : "Indicates if dial attempts should be selected."
+        }
+      }
+    },
+    "RestrictionInfo" : {
+      "id" : "RestrictionInfo",
+      "properties" : {
+        "value" : {
+          "type" : "string",
+          "description" : "Value of restriction. Meaning of this value depends on {@link RestrictionInfo#type}"
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "Type of restriction. Defines meaning of {@link RestrictionInfo#value} field.\n For example:\n <ul>\n   <li>if \"type\" is RestrictionType.MIN then \"value\" field is an integer like \"250\"\n   <li>if \"type\" is RestrictionType.DAT_FORMAT then \"value\" is a format pattern like \"YYYY-MM-DD\"\n </ul>",
+          "enum" : [ "MIN", "MAX", "REGEXP", "REQUIRED", "SET", "MULTISET", "PRECISION", "SCALE", "TIME_FORMAT", "DATE_FORMAT", "DEFAULT_VALUE", "TIME_PERIOD_FORMAT", "CURRENCY_TYPE" ]
+        }
+      }
+    },
+    "ChatOwnerBody" : {
+      "id" : "ChatOwnerBody",
+      "properties" : {
+        "ownerId" : {
+          "type" : "string"
+        },
+        "userIds" : {
+          "type" : "String[]"
+        },
+        "newUserId" : {
+          "type" : "string"
+        },
+        "messageId" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Cluster" : {
+      "id" : "Cluster",
+      "properties" : {
+        "tenantId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "catchAll" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "sfId" : {
+          "type" : "string"
+        },
+        "deletionTime" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "tag" : {
+          "type" : "string"
+        },
+        "classification" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "creationTime" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "modificationTime" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "sfClusterNr" : {
+          "type" : "string"
+        }
+      }
+    },
+    "EmailAttachmentInfo" : {
+      "id" : "EmailAttachmentInfo",
+      "properties" : {
+        "fileName" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PhoneNumberLocalizationOptionsInfo" : {
+      "id" : "PhoneNumberLocalizationOptionsInfo",
+      "properties" : {
+        "localizeContactsAndConnectors" : {
+          "type" : "boolean",
+          "description" : "True if phone numbers should be localized when they are passed to outside world (e.g., some kind of Contact\n export)."
+        },
+        "locale" : {
+          "type" : "PhoneNumberLocaleInfo",
+          "description" : "Locale which should be used when localizing phone numbers (if necessary)."
+        },
+        "localizeNumberDisplay" : {
+          "type" : "boolean",
+          "description" : "True if phone numbers should be localized when they are displayed."
+        }
+      }
+    },
+    "EWTInfo" : {
+      "id" : "EWTInfo",
+      "properties" : {
+        "orgId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "groupId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "resultCode" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "mediaType" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "ewt" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "Callback" : {
+      "id" : "Callback",
+      "properties" : {
+        "tenantId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "requestCode" : {
+          "type" : "string"
+        },
+        "redirectURL" : {
+          "type" : "string"
+        },
+        "creationTime" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "itemId" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ContactLookupResultInfo" : {
+      "id" : "ContactLookupResultInfo",
+      "properties" : {
+        "hasMore" : {
+          "type" : "boolean",
+          "description" : "Indicates whether there are more entries on the server which can requested additionally"
+        },
+        "cursor" : {
+          "type" : "string",
+          "description" : "Serialized object. Don't modify or show it somewhere. \n Use it in next request to get next records for the contact"
+        },
+        "hasMoreRecords" : {
+          "type" : "void"
+        },
+        "contacts" : {
+          "type" : "array",
+          "description" : "Collection of contacts",
+          "items" : {
+            "$ref" : "ContactInfo"
+          }
+        }
+      }
+    },
+    "Attribute" : {
+      "id" : "Attribute",
+      "properties" : {
+        "tenantId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "values" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "AttributeValue"
+          }
+        },
+        "profileId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "attId" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ContactFieldInfo" : {
+      "id" : "ContactFieldInfo",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "Unique identificator of Contact Field"
+        },
+        "dataType" : {
+          "type" : "string",
+          "description" : "Data Type of Contact Field. Not null.",
+          "enum" : [ "STRING", "NUMBER", "DATE", "TIME", "DATE_TIME", "CURRENCY", "BOOLEAN", "PERCENT", "EMAIL", "URL", "PHONE", "TIME_PERIOD" ]
+        },
+        "restrictions" : {
+          "type" : "RestrictionsInfo",
+          "description" : "Restrictions related to Data Type of CAV. Not null."
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "Unique internal name of Contact Field used for substitutions in Agent Scripts and Connectors.\n UI name of Contact Field is defined in {@link FieldViewInfo#label}. Not null."
+        }
+      }
+    },
+    "AgentChatBody" : {
+      "id" : "AgentChatBody",
+      "properties" : {
+        "content" : {
+          "type" : "string"
+        },
+        "profileId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "ownerId" : {
+          "type" : "string"
+        },
+        "userIds" : {
+          "type" : "String[]"
+        },
+        "contentType" : {
+          "type" : "string"
+        },
+        "displayName" : {
+          "type" : "string"
+        },
+        "messageId" : {
+          "type" : "string"
+        }
+      }
+    },
+    "CreateTopicBody" : {
+      "id" : "CreateTopicBody",
+      "properties" : {
+        "topicName" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ReplyToHistory" : {
+      "id" : "ReplyToHistory",
+      "properties" : {
+        "profileId" : {
+          "type" : "string"
+        },
+        "authorName" : {
+          "type" : "string"
+        },
+        "replyMsg" : {
+          "type" : "string"
+        }
+      }
+    },
+    "SendSocialBody" : {
+      "id" : "SendSocialBody",
+      "properties" : {
+        "profileId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "authorName" : {
+          "type" : "string"
+        },
+        "authorHandle" : {
+          "type" : "string"
+        },
+        "msgType" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "replyMsg" : {
+          "type" : "string"
+        },
+        "authorId" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DispositionBody" : {
+      "id" : "DispositionBody",
+      "properties" : {
+        "profileId" : {
+          "type" : "string"
+        },
+        "dispositionId" : {
+          "type" : "string"
+        },
+        "mediaType" : {
+          "type" : "string"
+        },
+        "isClose" : {
+          "type" : "string"
+        }
+      }
+    },
+    "AcceptBody" : {
+      "id" : "AcceptBody",
+      "properties" : {
+        "profileId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "mediaType" : {
+          "type" : "string"
+        }
+      }
+    },
+    "SurveyBody" : {
+      "id" : "SurveyBody",
+      "properties" : {
+        "templateAnswer" : {
+          "type" : "string"
+        },
+        "templateId" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "tenantId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "templateQuestion" : {
+          "type" : "string"
+        },
+        "profileId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "score" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "itemId" : {
+          "type" : "string"
+        },
+        "fromMedia" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "profileName" : {
+          "type" : "string"
+        },
+        "tenantName" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DispositionFilterInfo" : {
+      "id" : "DispositionFilterInfo",
+      "properties" : {
+        "filters" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          },
+          "uniqueItems" : true
+        }
+      }
+    },
+    "VersionInfo" : {
+      "id" : "VersionInfo",
+      "properties" : {
+        "vccVersion" : {
+          "type" : "string",
+          "description" : "Version of VCC server"
+        },
+        "clientCommonVersion" : {
+          "type" : "string",
+          "description" : "Version of ClientCommon library"
+        },
+        "buildVendor" : {
+          "type" : "string",
+          "description" : "VCC build vendor"
+        },
+        "agentCommonVersion" : {
+          "type" : "string",
+          "description" : "Version of AgentCommon library"
+        },
+        "vccBuildId" : {
+          "type" : "string",
+          "description" : "Id of VCC server build"
+        },
+        "buildDate" : {
+          "type" : "string",
+          "description" : "Date of the build\n The number of milliseconds since January 1, 1970, 00:00:00 GMT."
+        },
+        "copyright" : {
+          "type" : "string",
+          "description" : "Copyright"
+        },
+        "agentVersion" : {
+          "type" : "string",
+          "description" : "Version of Agent library"
+        },
+        "sccVersion" : {
+          "type" : "string",
+          "description" : "Version of SoCoCare server"
+        },
+        "vccBuildEdition" : {
+          "type" : "string",
+          "description" : "Edition of VCC server"
+        },
+        "vccBuildSaEdition" : {
+          "type" : "string",
+          "description" : "SA edition of VCC server"
+        }
+      }
+    },
+    "Five9ExceptionDetail" : {
+      "id" : "Five9ExceptionDetail",
+      "properties" : {
+        "message" : {
+          "type" : "string",
+          "description" : "Error Message"
+        },
+        "timestamp" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "UTC time in milliseconds"
+        },
+        "source" : {
+          "type" : "string",
+          "description" : "Use this to identify the source of the problem"
+        },
+        "context" : {
+          "type" : "Map",
+          "description" : "context: Map of string values to report additional information about the problem.\n Say when a login failed, then userId can be sent as part of the context."
+        },
+        "errorCode" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "client specific errorCode for automated systems to track"
+        }
+      }
+    },
+    "CampaignInfo" : {
+      "id" : "CampaignInfo",
+      "properties" : {
+        "outEmail" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "the outEmail"
+        },
+        "id" : {
+          "type" : "string",
+          "description" : "Id of campaign"
+        },
+        "chatTerminateMessage" : {
+          "type" : "string"
+        },
+        "flags" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "CampaignFlag"
+          },
+          "uniqueItems" : true
+        },
+        "chatWelcomeMessage" : {
+          "type" : "string"
+        },
+        "campaignType" : {
+          "type" : "string",
+          "description" : "Campaign type",
+          "enum" : [ "INBOUND", "OUTBOUND", "AUTODIAL" ]
+        },
+        "customSource" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "Campaign name"
+        },
+        "state" : {
+          "type" : "string",
+          "description" : "Campaign current state",
+          "enum" : [ "NOT_RUNNING", "RUNNING", "STOPPING", "STARTING", "RESETTING" ]
+        },
+        "customIcon" : {
+          "type" : "string"
+        },
+        "attributes" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "avatarURL" : {
+          "type" : "string"
+        },
+        "assistances" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "QuestionInfo" : {
+      "id" : "QuestionInfo",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "Id of the question"
+        },
+        "fieldRestrictions" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "RestrictionInfo"
+          }
+        },
+        "dataType" : {
+          "type" : "string",
+          "description" : "Data type of an answer",
+          "enum" : [ "STRING", "NUMBER", "DATE", "TIME", "DATE_TIME", "CURRENCY", "BOOLEAN", "PERCENT", "EMAIL", "URL", "PHONE", "TIME_PERIOD" ]
+        },
+        "fieldType" : {
+          "type" : "string",
+          "enum" : [ "COMBOBOX", "LIST", "BUTTONS", "SINGLE_LINE", "MULTI_LINE" ]
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "Description of the question"
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "Name of the question"
+        },
+        "finishAllowed" : {
+          "type" : "boolean",
+          "description" : "Shows if the question allows to finalize whole worksheet"
+        },
+        "dataRestrictions" : {
+          "type" : "array",
+          "description" : "Restriction rules applied for the question's data",
+          "items" : {
+            "$ref" : "RestrictionInfo"
+          }
+        },
+        "viewType" : {
+          "type" : "string",
+          "description" : "View type of an answer",
+          "enum" : [ "COMBOBOX", "LIST", "BUTTONS", "SINGLE_LINE", "MULTI_LINE" ]
+        },
+        "answerCriteria" : {
+          "type" : "array",
+          "description" : "Collection of answer criteria defines what question should follow next\n after getting an answer to this question",
+          "items" : {
+            "$ref" : "AnswerCriteriaInfo"
+          }
+        }
+      }
+    },
+    "AuthorAccount" : {
+      "id" : "AuthorAccount",
+      "properties" : {
+        "updateTime" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "relation" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "handleId" : {
+          "type" : "string"
+        },
+        "handleName" : {
+          "type" : "string"
+        },
+        "profileURL" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "imageURL" : {
+          "type" : "string"
+        },
+        "authorId" : {
+          "type" : "string"
+        }
+      }
+    },
+    "SpamBody" : {
+      "id" : "SpamBody",
+      "properties" : {
+        "spam" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "SkillInfo" : {
+      "id" : "SkillInfo",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "NoteBody" : {
+      "id" : "NoteBody",
+      "properties" : {
+        "note" : {
+          "type" : "string"
+        },
+        "authorId" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ContentDisposition" : {
+      "id" : "ContentDisposition",
+      "properties" : {
+        "values" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "parameters" : {
+          "type" : "Map"
+        },
+        "type" : {
+          "type" : "string"
+        }
+      }
+    },
+    "SpeedDialInfo" : {
+      "id" : "SpeedDialInfo",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "Speed Dial id"
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "Speed Dial description"
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "Speed Dial name"
+        },
+        "number" : {
+          "type" : "string",
+          "description" : "Speed Dial number"
+        }
+      }
+    },
+    "String[]" : {
+      "id" : "String[]",
+      "properties" : {
+        "hash" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "empty" : {
+          "type" : "boolean"
+        },
+        "value" : {
+          "type" : "char[]"
+        }
+      }
+    },
+    "TopicIdBody" : {
+      "id" : "TopicIdBody",
+      "properties" : {
+        "topicId" : {
+          "type" : "string"
+        }
+      }
+    },
+    "MessageBodyItem[]" : {
+      "id" : "MessageBodyItem[]",
+      "properties" : {
+        "analyze" : {
+          "type" : "string"
+        },
+        "value" : {
+          "type" : "string"
+        },
+        "key" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ContactInfo" : {
+      "id" : "ContactInfo",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "accounts" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "AuthorAccount"
+          }
+        },
+        "modificationTime" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Contact modification time. API clients mustn't change it, it will make VCC to refuse contact."
+        },
+        "notes" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "Note"
+          }
+        },
+        "fields" : {
+          "type" : "Map",
+          "description" : "Map from field Ids to field values."
+        }
+      }
+    },
+    "ClusterBody" : {
+      "id" : "ClusterBody",
+      "properties" : {
+        "clusterId" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "InteractionHistoryViewInfo" : {
+      "id" : "InteractionHistoryViewInfo",
+      "properties" : {
+        "hasMore" : {
+          "type" : "boolean",
+          "description" : "Indicate if view has more records."
+        },
+        "id" : {
+          "type" : "string",
+          "description" : "Id of the history view. It is used to iterate over view records by calling ..."
+        },
+        "records" : {
+          "type" : "array",
+          "description" : "Portion of history records from the view.\n List of times contains equals or less number of records than {@link InteractionHistoryViewOptions#limit}.",
+          "items" : {
+            "$ref" : "SocialItem"
+          }
+        }
+      }
+    },
+    "RestrictionsInfo" : {
+      "id" : "RestrictionsInfo",
+      "properties" : {
+        "restrictions" : {
+          "type" : "array",
+          "description" : "List of restrictions which should be used to format output and verify user's input. Not null.",
+          "items" : {
+            "$ref" : "RestrictionInfo"
+          }
+        },
+        "limitedSetInfo" : {
+          "type" : "LimitedSetInfo",
+          "description" : "Set of allowed values. There is no limitation if value is null."
+        }
+      }
+    },
+    "LimitedSetInfo" : {
+      "id" : "LimitedSetInfo",
+      "properties" : {
+        "allowedValues" : {
+          "type" : "array",
+          "description" : "Set of allowed values. User input should be limited to values from this set.",
+          "items" : {
+            "$ref" : "PredefinedValueInfo"
+          }
+        },
+        "multiSelection" : {
+          "type" : "boolean",
+          "description" : "If false then user can select only one value from this set.\n If true then user can select more than one value at the same time."
+        }
+      }
+    },
+    "RemoveChatUsersBody" : {
+      "id" : "RemoveChatUsersBody",
+      "properties" : {
+        "content" : {
+          "type" : "string"
+        },
+        "removeUserNames" : {
+          "type" : "String[]"
+        },
+        "ownerId" : {
+          "type" : "string"
+        },
+        "removeUserIds" : {
+          "type" : "String[]"
+        },
+        "userIds" : {
+          "type" : "String[]"
+        },
+        "contentType" : {
+          "type" : "string"
+        },
+        "displayName" : {
+          "type" : "string"
+        },
+        "messageId" : {
+          "type" : "string"
+        }
+      }
+    },
+    "AssignTopicBody" : {
+      "id" : "AssignTopicBody",
+      "properties" : {
+        "topicId" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DispositionInfo" : {
+      "id" : "DispositionInfo",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "flags" : {
+          "type" : "array",
+          "description" : "Disposition flags",
+          "items" : {
+            "$ref" : "DispositionFlag"
+          },
+          "uniqueItems" : true
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "Description notes for the disposition"
+        },
+        "numberForTransfersAndConferences" : {
+          "type" : "string",
+          "description" : "If disposition has flag {@link com.five9.svc.org.info.DispositionFlag#ONLY_FOR_TRANSFER_AND_CONFERENCE ONLY_FOR_TRANSFER_AND_CONFERENCE}\n this field can contain a specific number to which calls may be transferred\n or conferenced before assigning the disposition.\n If this field is null there is no restriction on the number."
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "Name of the disposition"
+        },
+        "channelTypes" : {
+          "type" : "Map",
+          "description" : "Describes the types of interactions and cases to which the disposition applies."
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "Type of the disposition.",
+          "enum" : [ "FINAL", "REDIAL", "DND", "DNC" ]
+        },
+        "displayName" : {
+          "type" : "string",
+          "description" : "Name of the disposition which should be displayed to user.\n This field contains translated disposition name."
+        },
+        "timeout" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Default value of the timer in milliseconds that applies only when {@link #type} = {@link DispositionType#REDIAL\n REDIAL} or {@link DispositionType#DND DND}.\n Otherwise this field equals 0.\n When setting the disposition, the agent may enter a different time-out value if the disposition has either of\n these flags: {@link DispositionFlag#ALLOW_SET_REACTIVATE_TIMER} or\n {@link DispositionFlag#ALLOW_SET_REDIAL_TIMER}. \n In this case, UI should ask the agent for the timer value. The value to propose by default\n is {@link #timeout} field value."
+        }
+      }
+    },
+    "AddChatUsersBody" : {
+      "id" : "AddChatUsersBody",
+      "properties" : {
+        "content" : {
+          "type" : "string"
+        },
+        "ownerId" : {
+          "type" : "string"
+        },
+        "addUserIds" : {
+          "type" : "String[]"
+        },
+        "userIds" : {
+          "type" : "String[]"
+        },
+        "addUserNames" : {
+          "type" : "String[]"
+        },
+        "contentType" : {
+          "type" : "string"
+        },
+        "displayName" : {
+          "type" : "string"
+        },
+        "messageId" : {
+          "type" : "string"
+        }
+      }
+    },
+    "SessionTextInfo" : {
+      "id" : "SessionTextInfo",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "groupId" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "tenant" : {
+          "type" : "string"
+        },
+        "sessionId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "sessionType" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "creationTime" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "parameters" : {
+          "type" : "string"
+        },
+        "profileName" : {
+          "type" : "string"
+        }
+      }
+    },
+    "SocialItem" : {
+      "id" : "SocialItem",
+      "properties" : {
+        "to" : {
+          "type" : "string"
+        },
+        "manualIssue" : {
+          "type" : "string"
+        },
+        "nluTask" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "authorTimzone" : {
+          "type" : "string"
+        },
+        "wasResponded" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "assignedTime" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "authorInfluenceScore" : {
+          "type" : "string"
+        },
+        "tag" : {
+          "type" : "string"
+        },
+        "dispositionId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "fullData" : {
+          "type" : "string"
+        },
+        "startTime" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "open" : {
+          "type" : "boolean"
+        },
+        "publicationId" : {
+          "type" : "string"
+        },
+        "sentiment" : {
+          "type" : "string"
+        },
+        "nbaTime" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "nluTime" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "authorLocale" : {
+          "type" : "string"
+        },
+        "personId" : {
+          "type" : "string"
+        },
+        "place" : {
+          "type" : "string"
+        },
+        "videoURL" : {
+          "type" : "string"
+        },
+        "workedById" : {
+          "type" : "string"
+        },
+        "attributeSelections" : {
+          "type" : "array",
+          "description" : "the attributeSelections",
+          "items" : {
+            "$ref" : "AttributeSelection"
+          }
+        },
+        "topicName" : {
+          "type" : "string"
+        },
+        "datePublished" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "wrapTime" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "authorEnterpriseScore" : {
+          "type" : "string"
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "lastDispositionId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "dispositionTime" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "authorLocationName" : {
+          "type" : "string"
+        },
+        "contactId" : {
+          "type" : "string"
+        },
+        "replies" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "SocialItemReply"
+          }
+        },
+        "topicThreadId" : {
+          "type" : "string"
+        },
+        "authorName" : {
+          "type" : "string"
+        },
+        "socialItemId" : {
+          "type" : "string"
+        },
+        "autoIssue" : {
+          "type" : "string"
+        },
+        "publishedDate" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "comment" : {
+          "type" : "string"
+        },
+        "spam" : {
+          "type" : "string"
+        },
+        "sentimentScore" : {
+          "type" : "string"
+        },
+        "profileName" : {
+          "type" : "string"
+        },
+        "tenantId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "rulesTime" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "likeCount" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "issue" : {
+          "type" : "string"
+        },
+        "rulesTask" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "from" : {
+          "type" : "string"
+        },
+        "linkCaption" : {
+          "type" : "string"
+        },
+        "lang" : {
+          "type" : "string"
+        },
+        "mediaType" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "authorId" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "author" : {
+          "type" : "string"
+        },
+        "parentId" : {
+          "type" : "string"
+        },
+        "title" : {
+          "type" : "string"
+        },
+        "nbaTask" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "profileId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "gotAuthor" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "manualSpam" : {
+          "type" : "string"
+        },
+        "manualSentiment" : {
+          "type" : "string"
+        },
+        "disposition" : {
+          "type" : "string"
+        },
+        "resDate" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "profile" : {
+          "type" : "string"
+        },
+        "authorAccount" : {
+          "type" : "string"
+        },
+        "replyData" : {
+          "type" : "string"
+        },
+        "talkTime" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "influenceScore" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "relevancy" : {
+          "type" : "number",
+          "format" : "float"
+        },
+        "detectedIssue" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "source" : {
+          "type" : "string"
+        },
+        "agentName" : {
+          "type" : "string"
+        },
+        "classification" : {
+          "type" : "string"
+        },
+        "linkURL" : {
+          "type" : "string"
+        },
+        "clusterId" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "the clusterId"
+        },
+        "notes" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "Note"
+          }
+        },
+        "spamScore" : {
+          "type" : "string"
+        },
+        "pictureURL" : {
+          "type" : "string"
+        },
+        "iconURL" : {
+          "type" : "string"
+        }
+      }
+    },
+    "AttributeValue" : {
+      "id" : "AttributeValue",
+      "properties" : {
+        "tenantId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "attributevalue" : {
+          "type" : "string"
+        },
+        "profileId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "attributeId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "attvalueId" : {
+          "type" : "string"
+        },
+        "attId" : {
+          "type" : "string"
+        }
+      }
+    },
+    "SessionTextBody" : {
+      "id" : "SessionTextBody",
+      "properties" : {
+        "tenantId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "groupId" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "tenant" : {
+          "type" : "string"
+        },
+        "sessionId" : {
+          "type" : "string"
+        },
+        "profileId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "sessionType" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "parameters" : {
+          "type" : "string"
+        },
+        "profileName" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PhoneNumberLocaleInfo" : {
+      "id" : "PhoneNumberLocaleInfo",
+      "properties" : {
+        "countryName" : {
+          "type" : "string",
+          "description" : "Country name."
+        },
+        "nationalPrefix" : {
+          "type" : "string",
+          "description" : "Prefix for national phone numbers when dialing from this locale (e.g. 0 for UK)."
+        },
+        "countryCode" : {
+          "type" : "string",
+          "description" : "Digital country code. For example, it is \"1\" for US and \"44\" for UK."
+        },
+        "internationalPrefix" : {
+          "type" : "string",
+          "description" : "Prefix for international phone numbers when dialing from this locale (e.g., 011 for US, 00 for UK)."
+        }
+      }
+    },
+    "PhoneNumberFormatInfo" : {
+      "id" : "PhoneNumberFormatInfo",
+      "properties" : {
+        "locale" : {
+          "type" : "PhoneNumberLocaleInfo",
+          "description" : "Home locale for Data Center (US or UK, for example)."
+        },
+        "format" : {
+          "type" : "string",
+          "description" : "Phone number format. All phone number related API will provide numbers in specified format and will accept\n numbers only if they conform to this format.",
+          "enum" : [ "NORTH_AMERICAN", "E164" ]
+        }
+      }
+    },
+    "OrganizationInfo" : {
+      "id" : "OrganizationInfo",
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "description" : "Organization name"
+        },
+        "sccTenant" : {
+          "type" : "Tenant",
+          "description" : "SoCoCare information"
+        },
+        "version" : {
+          "type" : "VersionInfo",
+          "description" : "Build version"
+        }
+      }
+    },
+    "Topic" : {
+      "id" : "Topic",
+      "properties" : {
+        "tenantId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "deletionTime" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "topicId" : {
+          "type" : "string"
+        },
+        "creationTime" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "modificationTime" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "topicName" : {
+          "type" : "string"
+        }
+      }
+    },
+    "SurveyRequestInfo" : {
+      "id" : "SurveyRequestInfo",
+      "properties" : {
+        "status" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "msgType" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "itemId" : {
+          "type" : "string"
+        }
+      }
+    },
+    "TransferToGroupBody" : {
+      "id" : "TransferToGroupBody",
+      "properties" : {
+        "groupId" : {
+          "type" : "string"
+        },
+        "mediaType" : {
+          "type" : "string"
+        }
+      }
+    },
+    "TransferToAgentBody" : {
+      "id" : "TransferToAgentBody",
+      "properties" : {
+        "agentId" : {
+          "type" : "string"
+        },
+        "mediaType" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Tenant" : {
+      "id" : "Tenant",
+      "properties" : {
+        "dbAccessId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "five9accountId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "five9partitionId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "klOutActive" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "telligentVersion" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "five9domainId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "showContentSearch" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "withReplyAuthorCheck" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "acdServerId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "five9Id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "telligentActive" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "RateLimit" : {
+      "id" : "RateLimit",
+      "properties" : {
+        "rateLimit" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Rate limit in this time window"
+        },
+        "message" : {
+          "type" : "string"
+        },
+        "resetEpochSeconds" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "UTC epoch time in seconds when it will be reset"
+        },
+        "httpStatusCode" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "errorCode" : {
+          "type" : "string",
+          "description" : "HTTP Status Code\n 429 Too Many Requests"
+        },
+        "rateLimitType" : {
+          "type" : "string",
+          "enum" : [ "TOO_MANY_REQUESTS", "TOO_MANY_CONCURRENT_REQUESTS" ]
+        },
+        "rateLimitUnit" : {
+          "type" : "string",
+          "description" : "Rate limitted time window time unit",
+          "enum" : [ "NANOSECONDS", "MICROSECONDS", "MILLISECONDS", "SECONDS", "MINUTES", "HOURS", "DAYS" ]
+        }
+      }
+    },
+    "ProfileSurvey" : {
+      "id" : "ProfileSurvey",
+      "properties" : {
+        "templateId" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "tenantId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "templateQuestion" : {
+          "type" : "string"
+        },
+        "profileId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "enableSurvey" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "templateThankyouMessage" : {
+          "type" : "string"
+        }
+      }
+    },
+    "LocaleInfo" : {
+      "id" : "LocaleInfo",
+      "properties" : {
+        "region" : {
+          "type" : "string",
+          "description" : "Region code if applicable."
+        },
+        "id" : {
+          "type" : "string",
+          "description" : "Id of the locale used to access or update localization file."
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "Description of the locale."
+        },
+        "language" : {
+          "type" : "string",
+          "description" : "Language code of the locale."
+        },
+        "country" : {
+          "type" : "string",
+          "description" : "Country code if applicable."
+        }
+      }
+    },
+    "AnswerCriteriaInfo" : {
+      "id" : "AnswerCriteriaInfo",
+      "properties" : {
+        "questionToJumpTo" : {
+          "type" : "string",
+          "description" : "What question should follow next if entered value equals to valueToCheck.\n Should be compared with {@link QuestionInfo#name}"
+        },
+        "valueToCheck" : {
+          "type" : "Object",
+          "description" : "Expected value entered by a user on answering the worksheet question"
+        }
+      }
+    },
+    "SentimentBody" : {
+      "id" : "SentimentBody",
+      "properties" : {
+        "sentiment" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "EmailRequestInfo" : {
+      "id" : "EmailRequestInfo",
+      "properties" : {
+        "status" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "survey" : {
+          "type" : "ProfileSurvey",
+          "description" : "the survey"
+        },
+        "msgType" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "itemId" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Note" : {
+      "id" : "Note",
+      "properties" : {
+        "tenantId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "campaignId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "dispositionId" : {
+          "type" : "string"
+        },
+        "agentId" : {
+          "type" : "string"
+        },
+        "modificationTime" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "authorId" : {
+          "type" : "string"
+        },
+        "modified" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "author" : {
+          "type" : "string"
+        },
+        "sessionId" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "socialItemId" : {
+          "type" : "string"
+        },
+        "creationTime" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "comment" : {
+          "type" : "string"
+        },
+        "note" : {
+          "type" : "string"
+        }
+      }
+    },
+    "AgentsAreLoggedInInfo" : {
+      "id" : "AgentsAreLoggedInInfo",
+      "properties" : {
+        "agentsAreLoggedIn" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "CallVariableInfo" : {
+      "id" : "CallVariableInfo",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "Unique identificator of CAV"
+        },
+        "restrictions" : {
+          "type" : "RestrictionsInfo",
+          "description" : "Restrictions related to Data Type of CAV. Not null."
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "Internal name of CAV used for substitutions in Agent Scripts and Connectors.\n UI name of CAV is defined in FieldViewInfo. Not null."
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "Data Type of CAV. Not null.",
+          "enum" : [ "STRING", "NUMBER", "DATE", "TIME", "DATE_TIME", "CURRENCY", "BOOLEAN", "PERCENT", "EMAIL", "URL", "PHONE", "TIME_PERIOD" ]
+        },
+        "group" : {
+          "type" : "string",
+          "description" : "Variable group name"
+        }
+      }
+    },
+    "ChatWebHistoryBody" : {
+      "id" : "ChatWebHistoryBody",
+      "properties" : {
+        "history" : {
+          "type" : "string"
+        },
+        "sessionId" : {
+          "type" : "string"
+        },
+        "tenantname" : {
+          "type" : "string"
+        },
+        "profile" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ReplyToSocialBody" : {
+      "id" : "ReplyToSocialBody",
+      "properties" : {
+        "parentId" : {
+          "type" : "string"
+        },
+        "profileId" : {
+          "type" : "string"
+        },
+        "authorName" : {
+          "type" : "string"
+        },
+        "socialItemId" : {
+          "type" : "string"
+        },
+        "replyMsg" : {
+          "type" : "string"
+        },
+        "mediaType" : {
+          "type" : "string"
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "authorId" : {
+          "type" : "string"
+        }
+      }
+    },
+    "EditTopicBody" : {
+      "id" : "EditTopicBody",
+      "properties" : {
+        "topicName" : {
+          "type" : "string"
+        }
+      }
+    },
+    "AssignAttributeBody" : {
+      "id" : "AssignAttributeBody",
+      "properties" : {
+        "valueId" : {
+          "type" : "string"
+        },
+        "attributeId" : {
+          "type" : "string"
+        }
+      }
+    },
+    "MessageBody" : {
+      "id" : "MessageBody",
+      "properties" : {
+        "jsonString" : {
+          "type" : "string"
+        }
+      }
+    },
+    "SendEmailBody" : {
+      "id" : "SendEmailBody",
+      "properties" : {
+        "toAddresses" : {
+          "type" : "string"
+        },
+        "title" : {
+          "type" : "string"
+        },
+        "filenames" : {
+          "type" : "String[]"
+        },
+        "profileId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "authorName" : {
+          "type" : "string"
+        },
+        "bccAddresses" : {
+          "type" : "string"
+        },
+        "replyMsg" : {
+          "type" : "string"
+        },
+        "authorId" : {
+          "type" : "string"
+        },
+        "ccAddresses" : {
+          "type" : "string"
+        }
+      }
+    },
+    "AttributeSelection" : {
+      "id" : "AttributeSelection",
+      "properties" : {
+        "attributeName" : {
+          "type" : "string"
+        },
+        "attributeValue" : {
+          "type" : "string"
+        },
+        "attributeValueId" : {
+          "type" : "string"
+        },
+        "attributeId" : {
+          "type" : "string"
+        },
+        "itemId" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ChatOffer" : {
+      "id" : "ChatOffer",
+      "properties" : {
+        "tenantId" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "id" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "groupId" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "proactiveChatOfferTimeout" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "proactiveChatNumberOfPages" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "chatOfferCondition" : {
+          "type" : "string"
+        },
+        "proactiveChatHoverDuration" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "proactiveChatQuestion" : {
+          "type" : "string"
+        },
+        "consecutivePagesOnly" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "proactiveChatNumberOfOffer" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "proactiveChatTimeSpent" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "proactiveEstimatedWaitTime" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "UserInfo" : {
+      "id" : "UserInfo",
+      "properties" : {
+        "extension" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string",
+          "description" : "User ID."
+        },
+        "timeZoneID" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "avatarUrl" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "User name."
+        },
+        "isLoggedIn" : {
+          "type" : "boolean"
+        },
+        "active" : {
+          "type" : "boolean"
+        },
+        "role" : {
+          "type" : "string",
+          "description" : "Role which user is logged in under."
+        },
+        "loggedIn" : {
+          "type" : "boolean"
+        },
+        "fullName" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RequestEmailBody" : {
+      "id" : "RequestEmailBody",
+      "properties" : {
+        "tenantId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "body" : {
+          "type" : "string"
+        },
+        "groupId" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "groupName" : {
+          "type" : "string"
+        },
+        "subject" : {
+          "type" : "string"
+        },
+        "profileId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "emailAddress" : {
+          "type" : "string"
+        },
+        "profileName" : {
+          "type" : "string"
+        },
+        "tenantName" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ReasonCodeInfo" : {
+      "id" : "ReasonCodeInfo",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "Identificator of the reason code"
+        },
+        "selectable" : {
+          "type" : "boolean",
+          "description" : "The flag indicates if the reason can be selected in UI as a not ready reason.\n If the flag is true then {@link #id} can be specified as identificator in\n  {@link PresenceInfo#setNotReadyReasonCodeId(String)}\n when new presence is set by invoking of\n  {@link IAgentService#setPresence(String, PresenceInfo)}.\n\n  In case of false this reason code should be only depicted on UI."
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "Name of the reason code."
+        },
+        "displayName" : {
+          "type" : "string",
+          "description" : "Name of the reason code which should be displayed to user.\n This field contains translated reason code name."
+        }
+      }
+    },
+    "ContactSessionInfo" : {
+      "id" : "ContactSessionInfo",
+      "properties" : {
+        "campaignId" : {
+          "type" : "string",
+          "description" : "Campaign id"
+        },
+        "channelType" : {
+          "type" : "string",
+          "description" : "Session channel type",
+          "enum" : [ "CALL", "VOICE_MAIL", "EMAIL", "CHAT", "SOCIAL", "TEXT" ]
+        },
+        "sessionId" : {
+          "type" : "string",
+          "description" : "Session id"
+        },
+        "dispositionId" : {
+          "type" : "string",
+          "description" : "Disposition id"
+        },
+        "agentId" : {
+          "type" : "string",
+          "description" : "Agent id who participated in the session"
+        },
+        "comment" : {
+          "type" : "string",
+          "description" : "Comment set by agent for customer interaction"
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "Enumeration of call types @see {@link ContactSessionType}",
+          "enum" : [ "UNKNOWN", "MANUAL", "OUTBOUND", "AUTODIAL", "PREVIEW", "INBOUND", "QUEUE_CALLBACK", "STATION", "FORWARD", "THIRDPARTY_TRANSFER", "THIRDPARTY_CONFERENCE", "THIRDPARTY_CONSULT", "TEST_MANUAL", "TEST_OUTBOUND", "TEST_AUTODIAL", "TEST_PREVIEW", "INTERNAL", "INTERNAL_SKILL", "INTERNAL_IVR", "INTERNAL_CAMPAIGN", "INTERNAL_VM", "INBOUND_VM", "OUTBOUND_VM", "VISUAL" ]
+        },
+        "modified" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Unix timestamp(ms) - when this session was created"
+        }
+      }
+    },
+    "ChatRequestBody" : {
+      "id" : "ChatRequestBody",
+      "properties" : {
+        "groupId" : {
+          "type" : "string"
+        },
+        "groupName" : {
+          "type" : "string"
+        },
+        "accountNumber" : {
+          "type" : "string"
+        },
+        "locaion" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "customFields" : {
+          "type" : "MessageBodyItem[]"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "campaign" : {
+          "type" : "string"
+        },
+        "messageId" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}
