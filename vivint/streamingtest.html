@@ -5,9 +5,11 @@
  <script src="json2.js"></script> 
  <script src="jquery.cometd.js"></script> 
 <script type="text/javascript">
-var queryDict = {};
-location.search.substr(1).split("&").forEach(function(item) {queryDict[item.split("=")[0]] = item.split("=")[1]});
+
     (function($){
+      var queryDict = {};
+      location.search.substr(1).split("&").forEach(function(item) {queryDict[item.split("=")[0]] = item.split("=")[1]});
+      console.log(ueryDict.sessionID);
         $(document).ready(function() {
             // Connect to the CometD endpoint
             $.cometd.init({
