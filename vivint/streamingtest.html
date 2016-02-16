@@ -1,0 +1,46 @@
+<html>
+<head>
+ <script src="cometd.js"></script> 
+ <script src="jquery-1.5.1.js"></script> 
+ <script src="json2.js"></script> 
+ <script src="jquery.cometd.js"></script> 
+<script type="text/javascript">
+var queryDict = {};
+location.search.substr(1).split("&").forEach(function(item) {queryDict[item.split("=")[0]] = item.split("=")[1]});
+    (function($){
+        $(document).ready(function() {
+            // Connect to the CometD endpoint
+            $.cometd.init({
+               url: 'https://c.cs43.visual.force.com/cometd/33.0/',
+               requestHeaders: { Authorization: 'OAuth '+queryDict.sessionID}
+           });
+
+           // Subscribe to a topic. JSON-encoded update will be returned
+           // in the callback
+           $.cometd.subscribe('/topic/Five9MessageStream', function(message) {
+               $('#content').append('<p>Notification: ' +
+                    'Channel: ' + JSON.stringify(message.channel) + '<br>' +
+                    'Record name: ' + JSON.stringify(message.data.sobject.Name) +
+                    '<br>' + 'ID: ' + JSON.stringify(message.data.sobject.Id) + 
+                    '<br>' + 'OBJ: ' + JSON.stringify(message.data.sobject) + 
+                    '<br>' + 'Event type: ' + JSON.stringify(message.data.event.type)+
+                    '<br>' + 'Created: ' + JSON.stringify(message.data.event.createdDate) + 
+                    '</p>');
+            });
+        });
+   })(jQuery)
+   function disconnect() {
+       $.cometd.disconnect();
+   }
+   window.onbeforeunload = disconnect;
+   </script>
+   </head>
+    <body>
+    <div id="content">
+    <h1>Streaming API Test Page</h1>
+    <p>This is a demonstration page for Streaming API. Notifications from the 
+       InvoiceStatementUpdates channel will appear here...</p>
+    
+    </div>
+    </body>
+   </html>
