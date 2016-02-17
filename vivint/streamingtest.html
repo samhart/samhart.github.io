@@ -1,9 +1,9 @@
 <html>
 <head>
- <script src="cometd.js"></script> 
- <script src="jquery-1.5.1.js"></script> 
- <script src="json2.js"></script> 
- <script src="jquery.cometd.js"></script> 
+ <script src="https://c.cs43.visual.force.com/resource/cometd"></script> 
+ <script src="https://c.cs43.visual.force.com/resource/jquery151"></script> 
+ <script src="https://c.cs43.visual.force.com/resource/json2"></script> 
+ <script src="https://c.cs43.visual.force.com/resource/jquery_cometd"></script> 
 <script type="text/javascript">
 
     (function($){
@@ -13,7 +13,7 @@
         $(document).ready(function() {
             // Connect to the CometD endpoint
             $.cometd.init({
-               url: 'https://cs43.salesforce.com/cometd/33.0/',
+               url: 'https://c.cs43.visual.force.com/cometd/33.0/',
                requestHeaders: { Authorization: 'OAuth '+queryDict.sessionID}
            });
 
