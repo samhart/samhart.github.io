@@ -11,12 +11,6 @@
   fill: #222;
 }
 
-.county-boundary {
-  fill: none;
-  stroke: #fff;
-  stroke-width: .5px;
-}
-
 .state-boundary {
   fill: none;
   stroke: #fff;
@@ -96,21 +90,9 @@ figure:fullscreen img {
       .attr("d", path);
 
   svg.insert("path", ".graticule")
-      .datum(topojson.mesh(us, us.objects.counties, function(a, b) { return a !== b && !(a.id / 1000 ^ b.id / 1000); }))
-      .attr("class", "county-boundary")
-      .attr("d", path);
-
-  svg.insert("path", ".graticule")
       .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
       .attr("class", "state-boundary")
       .attr("d", path);
-/*
-    svg.selectAll(".counties")
-    .data(topojson.object(us, us.objects.counties).geometries)
-   .enter().append("path")
-    .attr("class", "counties")
-    .attr("d", path);
-*/
 
     // add circles to svg
     svg.selectAll("circle")
