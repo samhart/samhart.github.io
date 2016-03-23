@@ -183,6 +183,9 @@ if (
     window.addEventListener('resize', function(event){
         USmap.resize();
     });
+
+    var teledoc = {latitude:33.016153,longitude:-96.9762317};
+    USmap.arc( [{origin:{latitude:40.8486323,longitude:-111.9067443}, destination:teledoc}], {strokeWidth: 2});
 </script>
 </div>
 </body>
