@@ -15,7 +15,7 @@
   fill: none;
   stroke: #fff;
 }
-  body {
+  html, body {
     background-color: #fff;
   }
   
@@ -90,7 +90,7 @@ figure:fullscreen img {
       .attr("d", path);
 
   svg.insert("path", ".graticule")
-      .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
+      .datum(topojson.feature(us, us.objects.states, function(a, b) { return a !== b; }))
       .attr("class", "state-boundary")
       .attr("d", path);
 
