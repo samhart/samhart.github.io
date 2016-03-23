@@ -7,16 +7,19 @@
     <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'></script>
 
     <style type="text/css">
-  .states {
-          fill: #aaa;
-          stroke: #fff;
-          stroke-width: 0.75px;
-  }
+.land {
+  fill: #222;
+}
 
-.counties {
-  fill: #aaa;
+.county-boundary {
+  fill: none;
   stroke: #fff;
   stroke-width: .5px;
+}
+
+.state-boundary {
+  fill: none;
+  stroke: #fff;
 }
   body {
     background-color: #fff;
@@ -86,11 +89,21 @@ figure:fullscreen img {
         .append("g");
   var td = [-96.9762317,33.016153];
   d3.json("us.json", function(error, us) {
-    svg.selectAll(".states")
-    .data(topojson.object(us, us.objects.states).geometries)
-   .enter().append("path")
-    .attr("class", "states")
-    .attr("d", path);
+
+  svg.insert("path", ".graticule")
+      .datum(topojson.feature(us, us.objects.land))
+      .attr("class", "land")
+      .attr("d", path);
+
+  svg.insert("path", ".graticule")
+      .datum(topojson.mesh(us, us.objects.counties, function(a, b) { return a !== b && !(a.id / 1000 ^ b.id / 1000); }))
+      .attr("class", "county-boundary")
+      .attr("d", path);
+
+  svg.insert("path", ".graticule")
+      .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
+      .attr("class", "state-boundary")
+      .attr("d", path);
 /*
     svg.selectAll(".counties")
     .data(topojson.object(us, us.objects.counties).geometries)
@@ -167,7 +180,7 @@ if (
 
 }
 
-$('#NY').css('fill', 'red');
+
   </script>
   </body>
 </html>
