@@ -12,7 +12,8 @@
           stroke: #fff;
           stroke-width: 0.75px;
   }
-.county-boundary {
+
+.counties {
   stroke: #fff;
   stroke-width: .5px;
 }
@@ -90,10 +91,12 @@ figure:fullscreen img {
     .attr("class", "states")
     .attr("d", path);
 
-      svg.insert("path", ".graticule")
-      .datum(topojson.mesh(us, us.objects.counties, function(a, b) { return a !== b && !(a.id / 1000 ^ b.id / 1000); }))
-      .attr("class", "county-boundary")
-      .attr("d", path);
+    svg.selectAll(".counties")
+    .data(topojson.object(us, us.objects.counties).geometries)
+   .enter().append("path")
+    .attr("class", "counties")
+    .attr("d", path);
+
   });
 
   function sizeChange() {
