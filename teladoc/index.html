@@ -116,7 +116,7 @@
         element: document.getElementById("container"),
         scope: 'usa', //currently supports 'usa' and 'world', however with custom map data you can specify your own
         projection: 'equirectangular', //style of projection to be used. try "mercator"
-        height: 520, //if not null, datamaps will grab the height of 'element'
+        //height: 520, //if not null, datamaps will grab the height of 'element'
         fills: {
             defaultFill: '#EDDC4E'
         },
@@ -130,7 +130,7 @@
     });
     USmap.labels({'customLabelText': USdata});
 
-    
+
   // full-screen available?
 if (
   document.fullscreenEnabled || 
