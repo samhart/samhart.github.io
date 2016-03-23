@@ -89,6 +89,11 @@ figure:fullscreen img {
    .enter().append("path")
     .attr("class", "states")
     .attr("d", path);
+
+      svg.insert("path", ".graticule")
+      .datum(topojson.mesh(us, us.objects.counties, function(a, b) { return a !== b && !(a.id / 1000 ^ b.id / 1000); }))
+      .attr("class", "county-boundary")
+      .attr("d", path);
   });
 
   function sizeChange() {
