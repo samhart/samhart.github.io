@@ -100,14 +100,13 @@ figure:fullscreen img {
 */
 
     // add circles to svg
-    svg.selectAll(".mark")
+    svg.selectAll("circle")
     .data([td]).enter()
-    .append("mark")
+    .append("circle")
     .attr("cx", function (d) { console.log(projection(d)); return projection(d)[0]; })
     .attr("cy", function (d) { return projection(d)[1]; })
-    .attr("width", 24)
-    .attr("height", 24)
-    .attr("xlink:href",'https://cdn3.iconfinder.com/data/icons/softwaredemo/PNG/24x24/DrawingPin1_Blue.png')
+    .attr("r", "8px")
+    .attr("fill", "purple")
   });
 
   function sizeChange() {
