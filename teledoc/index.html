@@ -18,11 +18,49 @@
     border:2px solid #d0d0d0;
     border-radius: 5px;
   }
+
+  figure {
+  position: relative;
+  display: block;
+  width: 30%;
+  float: right;
+  padding: 0;
+  margin: 1em;
+  cursor: pointer;
+}
+
+figure img {
+  display: block;
+  max-width: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  cursor: pointer;
+}
+
+figure:-moz-full-screen svg {
+  position: fixed;
+}
+
+figure:-ms-fullscreen {
+  width: auto;
+}
+
+figure:-ms-fullscreen svg {
+  position: fixed;
+}
+
+figure:fullscreen svg {
+  position: fixed;
+}
+
     </style>
   </head>
   <body onload="sizeChange()">
   
-    <div id="container"></div>
+    <figure id="container"></figure>
 
   <script type="text/javascript">
   d3.select(window)
