@@ -6,10 +6,58 @@
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
     <script src="js/datamaps.usa.min.js"></script>
+    <style type="text/css">
+
+      html, body {
+        background-color: #fff;
+      }
+      
+      #container {
+        margin:2%;
+        padding:20px;
+      }
+
+      figure {
+      position: relative;
+      display: block;
+      float: right;
+      width: 90%;
+      padding: 0;
+      margin: 1em;
+      cursor: none;
+    }
+
+    figure img {
+      display: block;
+      max-width: 90%;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: 100px auto;
+      cursor: none;
+    }
+
+    figure:-moz-full-screen img {
+      position: fixed;
+    }
+
+    figure:-ms-fullscreen {
+      width: auto;
+    }
+
+    figure:-ms-fullscreen img {
+      position: fixed;
+    }
+
+    figure:fullscreen img {
+      position: fixed;
+    }
+
+    </style>
 </head>
 <body>
-<div id="container" style="position: relative; width: 100%; height: auto;"></div>
-
+<figure id="container"></figure>
 <script>
     var USdata = {
         'AK': '0',
@@ -81,6 +129,60 @@
         }
     });
     USmap.labels({'customLabelText': USdata});
+
+    
+  // full-screen available?
+if (
+  document.fullscreenEnabled || 
+  document.webkitFullscreenEnabled || 
+  document.mozFullScreenEnabled ||
+  document.msFullscreenEnabled
+) {
+
+  // image container
+  var i = document.getElementById("container");
+  
+  // click event handler
+  i.onclick = function() {
+  
+    // in full-screen?
+    if (
+      document.fullscreenElement ||
+      document.webkitFullscreenElement ||
+      document.mozFullScreenElement ||
+      document.msFullscreenElement
+    ) {
+
+      // exit full-screen
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+      }
+    
+    }
+    else {
+    
+      // go full-screen
+      if (i.requestFullscreen) {
+        this.requestFullscreen();
+      } else if (i.webkitRequestFullscreen) {
+        i.webkitRequestFullscreen();
+      } else if (i.mozRequestFullScreen) {
+        i.mozRequestFullScreen();
+      } else if (i.msRequestFullscreen) {
+        i.msRequestFullscreen();
+      }
+    
+    }
+  
+  }
+
+}
 </script>
 </div>
 </body>
