@@ -84,7 +84,7 @@ figure:fullscreen img {
     .append("svg")
     .attr("width", "100%")
         .append("g");
-  var td = [-122.490402, 37.786453];
+  var td = [-96.9762317,33.016153];
   d3.json("us.json", function(error, us) {
     svg.selectAll(".states")
     .data(topojson.object(us, us.objects.states).geometries)
