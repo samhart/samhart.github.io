@@ -185,7 +185,7 @@ if (
     });
 
     var teledoc = {latitude:33.016153,longitude:-96.9762317};
-    var arcs = USmap.arc( [{origin:{latitude:40.8486323,longitude:-111.9067443}, destination:teledoc}], {strokeWidth: 2}, function(){arcs.exit().remove()});
+    var arcs = USmap.arc( [{origin:{latitude:40.8486323,longitude:-111.9067443}, destination:teledoc}], {strokeWidth: 2}, function(dis){dis.exit().remove()});
 
     //USdata['UT'] = '1';
     //USmap.labels({'customLabelText': USdata});
