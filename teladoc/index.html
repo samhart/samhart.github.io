@@ -193,8 +193,8 @@ if (
       console.log()
       var teledoc = {latitude:33.016153,longitude:-96.9762317};
       if(typeof data.latitude !== "undefined" && typeof data.longitude !== "undefined"){
-      //USmap.arc( [{origin:{latitude:parseFloat(data.latitude),longitude:parseFloat(data.longitude)}, destination:teledoc}], {strokeWidth: 2, arcSharpness: 1}
-      USmap.arc( [{origin:{latitude:40.8486323,longitude:-111.9067443}, destination:teledoc}], {strokeWidth: 2, arcSharpness: 1}
+      USmap.arc( [{origin:{latitude:parseFloat(data.latitude),longitude:parseFloat(data.longitude)}, destination:teledoc}], {strokeWidth: 2, arcSharpness: 1}
+      //USmap.arc( [{origin:{latitude:40.8486323,longitude:-111.9067443}, destination:teledoc}], {strokeWidth: 2, arcSharpness: 1}
       , function(){setTimeout(function(){ USmap.arc([])}, 1200)} 
       );
     }
