@@ -6,7 +6,7 @@
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
     <script src="js/datamaps.usa.min.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
+    <script src="http:nodebox/socket.io/socket.io.js"></script>
     <style type="text/css">
 
       html, body {
@@ -186,6 +186,7 @@ if (
     });
 
     var teledoc = {latitude:33.016153,longitude:-96.9762317};
+    var socket = io.connect('http://nodebox');
     socket.on('news', function (data) {
       //console.log(data);
       //socket.emit('my other event', { my: 'data' });
