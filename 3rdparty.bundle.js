@@ -5,6 +5,7 @@ define('modules/crm.api',['ui.api.v1'],
                 /**
                  * Initialize CRM engine
                  */
+                 alert('hi');
                 var configObject = {
                     providerName: 'CRM API',
                     myCallsTodayEnabled: true,
@@ -82,6 +83,7 @@ define('workflow/init',['ui.api.v1', 'modules/crm.api'],
             },
 
             onModelLoad: function () {
+
                 //Place your server model subscription code here
                 UiApi.Logger.debug('CrmApi:workflow:onModelLoad');
             },
