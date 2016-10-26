@@ -5,7 +5,6 @@ define('modules/crm.api',['ui.api.v1'],
                 /**
                  * Initialize CRM engine
                  */
-                 alert('hi');
                 var configObject = {
                     providerName: 'CRM API',
                     myCallsTodayEnabled: true,
@@ -78,12 +77,28 @@ define('workflow/init',['ui.api.v1', 'modules/crm.api'],
                 //Place your library initialization code here
                 UiApi.Logger.debug('CrmApi:workflow:initialize');
 
+                window.addEventListener("message", function(event){
+                    window.console.log(event.data);
+                    window.console.log(event.origin);
+                    UiApi.Logger.debug('-------------------------------------------------');
+                    //UiApi.Logger.debug(event.isTrusted);
+                    UiApi.Logger.debug(event.data.method == "getAgentStatus");
+                    if(event.data.method == "getAgentStatus"){
+                        //Five9.Context.Agent.Presence().isReady()
+                         window.console.log("getAgentState success");
+                        event.source.postMessage({"caseID":event.data.caseID, "agentIsReady":Five9.Context.Agent.Presence().isReady()},event.origin);
+                     }else{
+                        window.console.log("getAgentState fail");
+                     }
+                    //or broadcast to window.parent.frames
+                }, false);
+
+
                 // Initialize the CRM Shim
                 CrmApi.initialize();
             },
 
             onModelLoad: function () {
-
                 //Place your server model subscription code here
                 UiApi.Logger.debug('CrmApi:workflow:onModelLoad');
             },
