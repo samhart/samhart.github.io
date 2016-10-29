@@ -78,7 +78,7 @@ define('workflow/init',['ui.api.v1', 'modules/crm.api'],
                 UiApi.Logger.debug('CrmApi:workflow:initialize');
 
                 window.addEventListener("message", function(event){
-                    window.console.log(event.data);
+                    //alert(event.data);
                     window.console.log(event.origin);
                     UiApi.Logger.debug('-------------------------------------------------');
                     //UiApi.Logger.debug(event.isTrusted);
@@ -87,12 +87,16 @@ define('workflow/init',['ui.api.v1', 'modules/crm.api'],
                         //Five9.Context.Agent.Presence().isReady()
                          window.console.log("getAgentState success");
                         event.source.postMessage({"caseID":event.data.caseID, "agentIsReady":Five9.Context.Agent.Presence().isReady()},event.origin);
+                     }else if(event.data.method == "heartbeat"){
+                        //just reflect the object back
+                        window.console.log("++heartbeat++");
+                        event.source.postMessage(event.data,event.origin);
                      }else{
-                        window.console.log("getAgentState fail");
+                        window.console.log("no valid method chosen: "+event.data.method);
                      }
                     //or broadcast to window.parent.frames
                 }, false);
-
+                UiApi.Logger.debug('-------------------------------------------------');
 
                 // Initialize the CRM Shim
                 CrmApi.initialize();
