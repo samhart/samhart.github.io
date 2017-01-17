@@ -119,10 +119,6 @@ define('3rdparty.bundle',[
     'handlebars',
     'workflow/init'
 
-    //presentations models
-
-    //components
-
   ],
   function (UiApi, Handlebars, Init
 ) {
