@@ -1,0 +1,39 @@
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    
+    var f9UserId;
+    var f9CallId;
+
+    function makeExternalCall(extNumber){
+        //before making the transfer, we need the Five9 User ID of the agent and the call ID of the current call
+        $.get( "https://app.five9.com/appsvcs/rs/svc/auth/metadata", function( data ) {
+            if (typeof data.userId !== 'undefined'){
+                f9UserId = data.userId;
+                $.get( "https://app.five9.com/appsvcs/rs/svc/agents/"+f9UserId+"/interactions/calls", function( res ){
+                    console.log(res);
+                });
+            }
+            else{
+                console.log("something happened")
+            }
+        });
+    }
+
+    (function($){
+
+        $.ajaxSetup({
+            crossDomain: true,
+            async: false,
+            xhrFields: {
+                withCredentials: true
+            }
+        });
+    })(jQuery)
+</script>
+</head>
+<body>
+<button type="button" onclick="makeExternalCall('8015745759')">Make External Call</button>
+</body>
+</html>
