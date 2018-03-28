@@ -13,16 +13,37 @@
                 f9UserId = data.userId;
                 $.get( "https://app.five9.com/appsvcs/rs/svc/agents/"+f9UserId+"/interactions/calls", function( res ){
                     console.log(res);
+                    if(Array.isArray(res) && res.length > 0){
+                        //for this example I am assuming only one current call, YMMV
+                        f9CallId = res.[0].id;
+                        //Now we can xfer
+                        $.ajax({
+                              url: "https://app.five9.com/appsvcs/rs/svc/agents/"+f9UserId+"/interactions/calls/"+f9CallId+"/transfer_to_external_number",
+                              type: 'PUT',
+                              data: {
+                                  "warm": false,
+                                  "destination": {
+                                    "number": extNumber,
+                                    "skipDNCCheck": true
+                                  }
+                                },
+                              success: function(putres) {
+                                console.log(putres);
+                              }
+                            });
+
+                    }else{
+                        console.log("not on a call");
+                    }
                 });
-            }
-            else{
+            }else{
                 console.log("something happened")
             }
         });
     }
 
     (function($){
-
+        //IMPORTANT JQUERY AJAX SETTINGS!
         $.ajaxSetup({
             crossDomain: true,
             async: false,
@@ -34,6 +55,6 @@
 </script>
 </head>
 <body>
-<button type="button" onclick="makeExternalCall('8015745759')">Make External Call</button>
+<button type="button" onclick="makeExternalCall('7609355759')">Make External Call</button>
 </body>
 </html>
