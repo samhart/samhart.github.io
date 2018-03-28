@@ -20,13 +20,13 @@
                         $.ajax({
                               url: "https://app.five9.com/appsvcs/rs/svc/agents/"+f9UserId+"/interactions/calls/"+f9CallId+"/transfer_to_external_number",
                               type: 'PUT',
-                              data: {
+                              data: JSON.stringify({
                                   "warm": false,
                                   "destination": {
                                     "number": extNumber,
                                     "skipDNCCheck": true
                                   }
-                                },
+                                }),
                                 contentType: "application/json",
                               success: function(putres) {
                                 console.log(putres);
