@@ -143,6 +143,7 @@ function defineAdapter() {
                         if (UiApi.Context.Agent) {
                             this.log('onSessionInitialized', 'checking listeners.');
 				console.log('%%%%%%%%%%%%%%%');
+				console.log(!UiApi.Context.Agent.Call());
 				console.log(!UiApi.Context.Agent.Call()._events);
 				console.log(UiApi);
 				console.log('%%%%%%%%%%%%%%%');
