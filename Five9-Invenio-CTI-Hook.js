@@ -141,17 +141,8 @@ function defineAdapter() {
                     var me = this;                    
                     if (!this.isSfdcIFrame) return;
                         if (UiApi.Context.Agent) {
-                            this.log('onSessionInitialized', 'checking listeners.');
-				console.log('%%%%%%%%%%%%%%%');
-				console.log(!UiApi.Context.Agent.Call());
-				console.log(!UiApi.Context.Agent.Call()._events);
-				console.log(UiApi);
-				console.log('%%%%%%%%%%%%%%%');
-				this.log('onSessionInitialized', JSON.stringify(!UiApi.Context.Agent.Call()._events));
-                            if (!UiApi.Context.Agent.Call()._events) {
-                                this.log('onSessionInitialized', 'adding call listener.');
-                                UiApi.Context.Agent.Call().on('add change', me.handleCallInfo, this);
-                            }                             
+                            this.log('onSessionInitialized', 'adding call listener.');
+                            UiApi.Context.Agent.Call().on('add change', me.handleCallInfo, this);               
                         }
                 },
                 getCallVariableByName: function(cavName) {
