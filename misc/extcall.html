@@ -11,32 +11,21 @@
         $.get( "https://app.five9.com/appsvcs/rs/svc/auth/metadata", function( data ) {
             if (typeof data.userId !== 'undefined'){
                 f9UserId = data.userId;
-                $.get( "https://app.five9.com/appsvcs/rs/svc/agents/"+f9UserId+"/interactions/calls", function( res ){
-                    console.log(res);
-                    if(Array.isArray(res) && res.length > 0){
                         //for this example I am assuming only one current call, YMMV
                         f9CallId = res[0].id;
                         //Now we can xfer
                         $.ajax({
-                              url: "https://app.five9.com/appsvcs/rs/svc/agents/"+f9UserId+"/interactions/calls/"+f9CallId+"/transfer_to_external_number",
-                              type: 'PUT',
+                              url: "https://app.five9.com/appsvcs/rs/svc/agents/"+f9UserId+"/interactions/make_external_call",
+                              type: 'POST',
                               data: JSON.stringify({
-                                  "warm": false,
-                                  "destination": {
                                     "number": extNumber,
                                     "skipDNCCheck": true
-                                  }
-                                }),
+                                  }),
                                 contentType: "application/json",
-                              success: function(putres) {
-                                console.log(putres);
+                              success: function(pres) {
+                                console.log(pres);
                               }
                             });
-
-                    }else{
-                        console.log("not on a call");
-                    }
-                });
             }else{
                 console.log("something happened")
             }
@@ -56,6 +45,6 @@
 </script>
 </head>
 <body>
-<button type="button" onclick="makeExternalCall('8884475594')">Make External Call</button>
+<a href="javascript:void(0)"  onclick="makeExternalCall('8884475594')">Make External Call</a>
 </body>
 </html>
