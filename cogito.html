@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>iFrame Demo</title>
+  <script language="JavaScript">
+    function doPostMessage() {
+        // Do stuff
+        let msg = document.getElementById('message').value
+        window.parent.postMessage(msg, "*")
+    }
+</script>
+  </head>
+  <body>
+	<form onsubmit="doPostMessage(); return false;">
+  <label for="lname">Message</label>
+  <input type="text" id="message" name="message"><br><br>
+  <input type="submit" value="Submit">
+</form>
+  </body>
+</html>
