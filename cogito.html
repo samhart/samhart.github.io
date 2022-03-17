@@ -8,9 +8,9 @@
   <script language="JavaScript">
     function doPostMessage() {
         // Do stuff
-        let msg = document.getElementById('message').value
+        let msg = document.getElementById('message').value;
 	console.log('message to send: '+msg);
-        window.parent.postMessage(msg, "*")
+        window.parent.postMessage(msg, "*");
     }
 </script>
   </head>
